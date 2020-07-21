@@ -1,18 +1,45 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <VideoPlayer />
+
+    <router-link to="/contact">
+      <button class="btn">Get in Touch</button>
+    </router-link>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import VideoPlayer from "@/components/VideoPlayer";
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
+  name: "Home",
+  components: { VideoPlayer }
+};
+</script>
+
+
+<style lang="scss" scoped>
+.home {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+
+.btn {
+  padding: 0.5rem 0.8rem;
+  text-transform: uppercase;
+  border: none;
+  margin: 1rem 0;
+  cursor: pointer;
+  &:hover {
+    border-bottom: 2px solid black;
+    font-weight: bold;
+  }
+  &:active {
+    border: 2px solid black;
+    font-weight: bold;
   }
 }
-</script>
+</style>
