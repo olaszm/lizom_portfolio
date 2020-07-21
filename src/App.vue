@@ -6,15 +6,14 @@
   </div>
 </template>
 
-
 <script>
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 export default {
   components: {
     NavBar,
-    Footer
-  }
+    Footer,
+  },
 };
 </script>
 
@@ -33,7 +32,7 @@ body {
 }
 
 .main {
-  padding-bottom: 140px;
+  padding-bottom: 200px;
 }
 
 #app {

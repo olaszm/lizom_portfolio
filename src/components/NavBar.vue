@@ -12,16 +12,23 @@
           v-for="(link, index) in navLinks"
           :key="index"
           :to="link.slug"
-        >{{link.title}}</router-link>
+          >{{ link.title }}</router-link
+        >
       </div>
 
       <div class="navigation-mobile" @click.stop="openMenu">
         <i class="fas fa-bars"></i>
       </div>
     </div>
+
     <transition name="fade" mode="out-in">
       <div class="dropdown-menu" v-if="isMenuOpen">
-        <router-link v-for="(link, index) in navLinks" :key="index" :to="link.slug">{{link.title}}</router-link>
+        <router-link
+          v-for="(link, index) in navLinks"
+          :key="index"
+          :to="link.slug"
+          >{{ link.title }}</router-link
+        >
       </div>
     </transition>
   </header>
@@ -35,31 +42,32 @@ export default {
         { slug: "/", title: "home" },
         { slug: "/work", title: "work" },
         { slug: "/about", title: "about" },
-        { slug: "/contact", title: "contact" }
+        { slug: "/contact", title: "contact" },
       ],
-      isMenuOpen: false
+      isMenuOpen: false,
     };
   },
   methods: {
     openMenu() {
       this.isMenuOpen = !this.isMenuOpen;
-    }
+    },
   },
   mounted() {
-    window.addEventListener("click", e => {
+    window.addEventListener("click", (e) => {
       if (!e.target.className.includes("dropdown-menu") && this.isMenuOpen) {
         this.openMenu();
       }
     });
-  }
+  },
 };
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 @import "@/style/_variables";
 header {
-  height: 60px;
+  max-height: 60px;
   width: 100%;
+  margin-bottom: 5rem;
 }
 
 .logo {
@@ -131,12 +139,12 @@ header {
 .dropdown-menu {
   z-index: 1;
   position: absolute;
-  top: 65px;
+  top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 200px;
+  height: 300px;
   background: black;
   width: 100%;
   a {
@@ -149,9 +157,10 @@ header {
 
 .drip {
   position: absolute;
-  top: -2%;
+  top: -1%;
   z-index: 2;
-  height: 90px;
+  min-height: 60px;
+  height: 65px;
   width: 100%;
   background-image: url("../assets/nav-drip.svg");
   background-repeat: no-repeat;

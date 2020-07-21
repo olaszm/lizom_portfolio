@@ -13,10 +13,9 @@
 import VideoPlayer from "@/components/VideoPlayer";
 export default {
   name: "Home",
-  components: { VideoPlayer }
+  components: { VideoPlayer },
 };
 </script>
-
 
 <style lang="scss" scoped>
 .home {

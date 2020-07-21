@@ -8,7 +8,7 @@
 export default {};
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 @import "@/style/_variables";
 
 .showreel {
@@ -18,7 +18,7 @@ export default {};
   width: 60%;
   height: 55vh;
   border: 5px solid black;
-  margin: 5rem auto;
+  margin: 0 auto;
   @media screen and (max-width: $small-break) {
     width: 90%;
     height: 40vh;
