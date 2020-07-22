@@ -19,9 +19,9 @@
     </div>
     <div class="footer-logo">
       <img src="@/assets/logotype.svg" alt />
-    </div>
-    <div class="copy">
-      <p>&copy; Copyright 2020. All rights reserved.</p>
+      <div class="copy">
+        <p>&copy; Copyright 2020. All rights reserved.</p>
+      </div>
     </div>
   </footer>
 </template>
@@ -54,14 +54,14 @@ footer {
   //   Test
   position: absolute;
   bottom: 0;
-  height: 140px;
+  height: 220px;
 }
 
 .social-buttons {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0.3rem;
+  margin-bottom: 2rem;
 }
 
 .social-btn {
@@ -89,7 +89,7 @@ footer {
 
 .footer-logo {
   height: 40px;
-  margin: 0.5em;
+  margin: 1rem 0;
   img {
     height: inherit;
   }

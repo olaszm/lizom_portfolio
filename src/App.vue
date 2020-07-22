@@ -32,7 +32,7 @@ body {
 }
 
 .main {
-  padding-bottom: 200px;
+  padding-bottom: 220px;
 }
 
 #app {

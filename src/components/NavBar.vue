@@ -64,22 +64,24 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/style/_variables";
+
 header {
-  max-height: 60px;
+  font-size: 14px;
+  height: 75px;
   width: 100%;
-  margin-bottom: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 .logo {
-  height: 100%;
+  height: 65%;
   display: flex;
   align-items: center;
   img {
     height: 100%;
     width: 100%;
-    @media screen and (max-width: $small-break) {
-      height: 35px;
-    }
   }
 }
 
@@ -99,14 +101,20 @@ header {
     display: none;
   }
   a {
-    color: black;
+    color: rgba(0, 0, 0, 0.5);
+    border: 2px solid transparent;
     text-decoration: none;
     text-transform: uppercase;
     margin: 0 1rem;
+    padding: 0.3rem 0.8rem;
+    &:hover {
+      color: black;
+    }
   }
 }
 
 .navigation-mobile {
+  transform: scale(1.3);
   cursor: pointer;
   display: none;
   @media screen and (max-width: $small-break) {
@@ -115,13 +123,13 @@ header {
 }
 
 .router-link-exact-active {
-  font-weight: bold;
-  border: 2px solid black;
+  color: black !important;
+  border: 2px solid black !important;
   padding: 0.3rem 0.8rem;
   @media screen and(max-width:$small-break) {
+    color: white !important;
     border: none;
-    border-bottom: 2px solid white;
-    padding: 0;
+    border-bottom: 2px solid white !important;
   }
 }
 
@@ -138,13 +146,14 @@ header {
 
 .dropdown-menu {
   z-index: 1;
+  font-size: 20px;
   position: absolute;
-  top: 0;
+  top: 10%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 300px;
+  height: 100vh;
   background: black;
   width: 100%;
   a {
@@ -159,8 +168,7 @@ header {
   position: absolute;
   top: -1%;
   z-index: 2;
-  min-height: 60px;
-  height: 65px;
+  height: 100%;
   width: 100%;
   background-image: url("../assets/nav-drip.svg");
   background-repeat: no-repeat;

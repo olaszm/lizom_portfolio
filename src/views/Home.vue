@@ -1,16 +1,13 @@
 <template>
-  <div class="home">
+  <div>
     <VideoPlayer />
-
-    <!-- <router-link to="/contact">
-      <button class="btn">Get in Touch</button>
-    </router-link> -->
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import VideoPlayer from "@/components/VideoPlayer";
+// import ImageGallery from "@/components/ImageGallery";
 export default {
   name: "Home",
   components: { VideoPlayer },
@@ -20,10 +17,7 @@ export default {
 <style lang="scss" scoped>
 .home {
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  width: 100%;
 }
 
 .btn {
