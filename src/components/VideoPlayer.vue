@@ -28,7 +28,7 @@ export default {};
 }
 
 .showreel {
-  margin: 5rem 0;
+  // margin: 5rem 0;
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */
   width: 100%;

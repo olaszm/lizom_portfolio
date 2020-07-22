@@ -14,7 +14,7 @@
           :to="link.slug"
           >{{ link.title }}</router-link
         >
-      </div> -->
+      </div>-->
 
       <NavigationLinks />
 
@@ -25,12 +25,7 @@
 
     <transition name="fade" mode="out-in">
       <div class="test" v-if="isMenuOpen">
-        <router-link
-          v-for="(link, index) in navLinks"
-          :key="index"
-          :to="link.slug"
-          >{{ link.title }}</router-link
-        >
+        <router-link v-for="(link, index) in navLinks" :key="index" :to="link.slug">{{ link.title }}</router-link>
       </div>
     </transition>
 
@@ -43,7 +38,7 @@
           >{{ link.title }}</router-link
         >
       </div>
-    </transition> -->
+    </transition>-->
   </header>
 </template>
 
@@ -52,7 +47,7 @@ import NavigationLinks from "@/components/NavigationLinks";
 
 export default {
   components: {
-    NavigationLinks,
+    NavigationLinks
   },
   data() {
     return {
@@ -60,23 +55,23 @@ export default {
         { slug: "/", title: "home" },
         { slug: "/work", title: "work" },
         { slug: "/about", title: "about" },
-        { slug: "/contact", title: "contact" },
+        { slug: "/contact", title: "contact" }
       ],
-      isMenuOpen: false,
+      isMenuOpen: false
     };
   },
   methods: {
     openMenu() {
       this.isMenuOpen = !this.isMenuOpen;
-    },
+    }
   },
   mounted() {
-    window.addEventListener("click", (e) => {
+    window.addEventListener("click", e => {
       if (!e.target.className.includes("dropdown-menu") && this.isMenuOpen) {
         this.openMenu();
       }
     });
-  },
+  }
 };
 </script>
 
@@ -84,6 +79,7 @@ export default {
 @import "@/style/_variables";
 
 header {
+  z-index: 2;
   font-size: 14px;
   height: 75px;
   width: 100%;
@@ -165,7 +161,7 @@ header {
 // }
 
 .test {
-  z-index: 1;
+  z-index: 2;
   position: absolute;
   bottom: -90%;
   background-color: $primary;
