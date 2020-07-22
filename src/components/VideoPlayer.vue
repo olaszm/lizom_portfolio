@@ -28,6 +28,7 @@ export default {};
 }
 
 .showreel {
+  margin: 5rem 0;
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */
   width: 100%;
@@ -39,8 +40,9 @@ export default {};
     width: 80%;
     height: 80%;
     transform: translate(-50%, -50%);
+    z-index: 1;
     @media screen and (max-width: $small-break) {
-      margin-top: 3rem;
+      margin: 5rem 0;
       width: 100%;
       height: 100%;
     }

@@ -6,7 +6,7 @@
         <img src="@/assets/logo.svg" alt />
       </div>
 
-      <div class="navigation-web">
+      <!-- <div class="navigation-web">
         <router-link
           class="btn"
           v-for="(link, index) in navLinks"
@@ -14,7 +14,9 @@
           :to="link.slug"
           >{{ link.title }}</router-link
         >
-      </div>
+      </div> -->
+
+      <NavigationLinks />
 
       <div class="navigation-mobile" @click.stop="openMenu">
         <i class="fas fa-bars"></i>
@@ -22,7 +24,7 @@
     </div>
 
     <transition name="fade" mode="out-in">
-      <div class="dropdown-menu" v-if="isMenuOpen">
+      <div class="test" v-if="isMenuOpen">
         <router-link
           v-for="(link, index) in navLinks"
           :key="index"
@@ -31,11 +33,27 @@
         >
       </div>
     </transition>
+
+    <!-- <transition name="fade" mode="out-in">
+      <div class="dropdown-menu" v-if="isMenuOpen">
+        <router-link
+          v-for="(link, index) in navLinks"
+          :key="index"
+          :to="link.slug"
+          >{{ link.title }}</router-link
+        >
+      </div>
+    </transition> -->
   </header>
 </template>
 
 <script>
+import NavigationLinks from "@/components/NavigationLinks";
+
 export default {
+  components: {
+    NavigationLinks,
+  },
   data() {
     return {
       navLinks: [
@@ -72,7 +90,8 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+  position: sticky;
+  top: 0;
 }
 
 .logo {
@@ -86,7 +105,7 @@ header {
 }
 
 .wrapper {
-  z-index: 3;
+  z-index: 2;
   height: 100%;
   display: flex;
   width: 80%;
@@ -123,13 +142,14 @@ header {
 }
 
 .router-link-exact-active {
+  background-color: white;
   color: black !important;
   border: 2px solid black !important;
   padding: 0.3rem 0.8rem;
   @media screen and(max-width:$small-break) {
-    color: white !important;
-    border: none;
-    border-bottom: 2px solid white !important;
+    // color: white !important;
+    // border: none;
+    // border-bottom: 2px solid white !important;
   }
 }
 
@@ -144,11 +164,38 @@ header {
 //   }
 // }
 
-.dropdown-menu {
+.test {
   z-index: 1;
-  font-size: 20px;
   position: absolute;
-  top: 10%;
+  bottom: -90%;
+  background-color: $primary;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // transform: translate(0, 100%);
+  a {
+    color: rgba(0, 0, 0, 0.5);
+    border: 2px solid transparent;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    margin: 0 0.3rem;
+    &:hover {
+      color: black;
+    }
+  }
+}
+
+.dropdown-menu {
+  // z-index: ;
+  position: absolute;
+  bottom: 0;
+  font-size: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
