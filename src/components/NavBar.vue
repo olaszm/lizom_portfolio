@@ -69,6 +69,7 @@ export default {
 @import "@/style/_variables";
 
 header {
+  z-index: 1;
   font-size: 14px;
   height: 75px;
   width: 100%;
