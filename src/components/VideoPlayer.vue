@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <div class="showreel">
+    <div class="showreel" v-show="!isMenuOpen">
       <iframe
         width="560"
         height="315"
@@ -13,7 +13,20 @@
 </template>
 
 <script>
-export default {};
+import { EventBus } from "@/plugins/eventbus";
+export default {
+  data() {
+    return {
+      isMenuOpen: false
+    };
+  },
+
+  created() {
+    EventBus.$on("MenuState", state => {
+      this.isMenuOpen = state;
+    });
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -28,7 +41,6 @@ export default {};
 }
 
 .showreel {
-  z-index: -1;
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */
   width: 100%;

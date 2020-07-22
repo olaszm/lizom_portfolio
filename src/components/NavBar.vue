@@ -14,7 +14,7 @@
           :to="link.slug"
           >{{ link.title }}</router-link
         >
-      </div> -->
+      </div>-->
       <NavigationLinks />
 
       <div class="navigation-mobile" @click.stop="openMenu">
@@ -24,12 +24,7 @@
 
     <transition name="fade" mode="out-in">
       <div class="dropdown-menu" v-if="isMenuOpen">
-        <router-link
-          v-for="(link, index) in navLinks"
-          :key="index"
-          :to="link.slug"
-          >{{ link.title }}</router-link
-        >
+        <router-link v-for="(link, index) in navLinks" :key="index" :to="link.slug">{{ link.title }}</router-link>
       </div>
     </transition>
   </header>
@@ -37,9 +32,11 @@
 
 <script>
 import NavigationLinks from "@/components/NavigationLinks";
+import { EventBus } from "@/plugins/eventbus";
+
 export default {
   components: {
-    NavigationLinks,
+    NavigationLinks
   },
   data() {
     return {
@@ -47,23 +44,24 @@ export default {
         { slug: "/", title: "home" },
         { slug: "/work", title: "work" },
         { slug: "/about", title: "about" },
-        { slug: "/contact", title: "contact" },
+        { slug: "/contact", title: "contact" }
       ],
-      isMenuOpen: false,
+      isMenuOpen: false
     };
   },
   methods: {
     openMenu() {
       this.isMenuOpen = !this.isMenuOpen;
-    },
+      EventBus.$emit("MenuState", this.isMenuOpen);
+    }
   },
   mounted() {
-    window.addEventListener("click", (e) => {
+    window.addEventListener("click", e => {
       if (!e.target.className.includes("dropdown-menu") && this.isMenuOpen) {
         this.openMenu();
       }
     });
-  },
+  }
 };
 </script>
 
@@ -93,7 +91,7 @@ header {
 }
 
 .wrapper {
-  z-index: 3;
+  z-index: 2;
   height: 100%;
   display: flex;
   width: 80%;
