@@ -2,9 +2,9 @@
   <div class="home">
     <VideoPlayer />
 
-    <router-link to="/contact">
+    <!-- <router-link to="/contact">
       <button class="btn">Get in Touch</button>
-    </router-link>
+    </router-link> -->
   </div>
 </template>
 
@@ -23,7 +23,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .btn {
