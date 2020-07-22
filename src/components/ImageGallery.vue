@@ -38,19 +38,19 @@ export default {
 
 .gallery {
   height: 100%;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   align-items: center;
-  justify-content: center;
+  justify-items: center;
+  gap: 2rem;
 }
 
 .image-container {
   img {
-    margin: 2rem;
-    max-width: 250px;
-    max-height: 250px;
+    width: 250px;
+    height: 250px;
     border: 5px solid black;
     object-fit: cover;
   }

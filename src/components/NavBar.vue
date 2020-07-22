@@ -5,7 +5,7 @@
       <div class="logo">
         <img src="@/assets/logo.svg" alt />
       </div>
-
+      <!-- 
       <div class="navigation-web">
         <router-link
           class="btn"
@@ -14,7 +14,8 @@
           :to="link.slug"
           >{{ link.title }}</router-link
         >
-      </div>
+      </div> -->
+      <NavigationLinks />
 
       <div class="navigation-mobile" @click.stop="openMenu">
         <i class="fas fa-bars"></i>
@@ -35,7 +36,11 @@
 </template>
 
 <script>
+import NavigationLinks from "@/components/NavigationLinks";
 export default {
+  components: {
+    NavigationLinks,
+  },
   data() {
     return {
       navLinks: [
@@ -73,6 +78,8 @@ header {
   align-items: center;
   justify-content: center;
   position: relative;
+  position: sticky;
+  top: 0;
 }
 
 .logo {
@@ -146,7 +153,6 @@ header {
 
 .dropdown-menu {
   z-index: 1;
-  font-size: 20px;
   position: absolute;
   top: 10%;
   display: flex;

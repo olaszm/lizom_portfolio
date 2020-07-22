@@ -40,6 +40,7 @@ a {
 }
 
 footer {
+  z-index: -1;
   font-size: 12px;
   display: flex;
   flex-direction: column;
@@ -67,7 +68,8 @@ footer {
 .social-btn {
   background-color: white;
   border-radius: 50%;
-  padding: 0.5em;
+  height: 25px;
+  width: 25px;
   display: flex;
   margin: 0 0.5rem;
   align-items: center;

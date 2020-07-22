@@ -28,6 +28,7 @@ export default {};
 }
 
 .showreel {
+  z-index: -1;
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */
   width: 100%;
