@@ -5,8 +5,7 @@
       v-for="(link, index) in navLinks"
       :key="index"
       :to="link.slug"
-      >{{ link.title }}</router-link
-    >
+    >{{ link.title }}</router-link>
   </div>
 </template>
 
@@ -15,13 +14,12 @@ export default {
   data() {
     return {
       navLinks: [
-        { slug: "/", title: "home" },
-        { slug: "/work", title: "work" },
+        { slug: "/", title: "work" },
         { slug: "/about", title: "about" },
-        { slug: "/contact", title: "contact" },
-      ],
+        { slug: "/contact", title: "contact" }
+      ]
     };
-  },
+  }
 };
 </script>
 
@@ -29,7 +27,6 @@ export default {
 @import "@/style/_variables";
 
 .navigation-web {
-  //   background-color: transparent;
   @media screen and (max-width: $small-break) {
     display: none;
   }
@@ -44,5 +41,10 @@ export default {
       color: black;
     }
   }
+}
+.router-link-exact-active {
+  border: 2px solid black !important;
+  font-weight: bold !important;
+  color: black !important;
 }
 </style>

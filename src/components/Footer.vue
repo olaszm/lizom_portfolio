@@ -1,22 +1,26 @@
 <template>
   <footer>
-    <div class="social-buttons">
-      <a href="https://www.instagram.com/lizomdavid/" target="_blank">
-        <div class="social-btn">
-          <i class="fab fa-instagram"></i>
-        </div>
-      </a>
-      <a href target="_blank">
-        <div class="social-btn">
-          <i class="fab fa-linkedin"></i>
-        </div>
-      </a>
-      <a href="https://www.behance.net/davidlizom" target="_blank">
-        <div class="social-btn">
-          <i class="fab fa-behance"></i>
-        </div>
-      </a>
+    <div class="top-section">
+      <div class="social-buttons">
+        <a href="https://www.instagram.com/lizomdavid/" target="_blank">
+          <div class="social-btn">
+            <i class="fab fa-instagram"></i>
+          </div>
+        </a>
+        <a href target="_blank">
+          <div class="social-btn">
+            <i class="fab fa-linkedin"></i>
+          </div>
+        </a>
+        <a href="https://www.behance.net/davidlizom" target="_blank">
+          <div class="social-btn">
+            <i class="fab fa-behance"></i>
+          </div>
+        </a>
+      </div>
+      <p class="phone-number">Tel.: +36 30 380 0343</p>
     </div>
+
     <div class="footer-logo">
       <img src="@/assets/logotype.svg" alt />
       <div class="copy">
@@ -47,7 +51,7 @@ footer {
   justify-content: center;
   text-align: center;
   background-color: black;
-  color: #eeeeee;
+  color: $white;
   width: 100%;
   padding: 1rem 0;
 
@@ -55,35 +59,57 @@ footer {
   position: absolute;
   bottom: 0;
   height: 220px;
+  @media screen and (max-width: $small-break) {
+    height: 110px;
+  }
 }
 
 .social-buttons {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 2rem;
+}
+
+.phone-number {
+  margin: 0.4rem 0;
+
+  @media screen and (max-width: $small-break) {
+    font-size: 10px;
+    margin: 0.2rem 0;
+  }
+}
+
+.copy {
+  @media screen and (max-width: $small-break) {
+    font-size: 10px;
+  }
 }
 
 .social-btn {
-  background-color: white;
+  background-color: $white;
   border-radius: 50%;
-  padding: 0.5em;
+  height: 25px;
+  width: 25px;
   display: flex;
   margin: 0 0.5rem;
   align-items: center;
   justify-content: center;
   border: 1px solid black;
   cursor: pointer;
-  transform: scale(1.2);
   i {
     color: black;
   }
   &:hover {
     background-color: black;
-    border: 1px solid white;
+    border: 1px solid $white;
     i {
-      color: white;
+      color: $white;
     }
+  }
+  @media screen and (max-width: $small-break) {
+    height: 15px;
+    width: 15px;
+    padding: 0.6rem;
   }
 }
 
@@ -92,6 +118,10 @@ footer {
   margin: 1rem 0;
   img {
     height: inherit;
+  }
+  @media screen and (max-width: $small-break) {
+    height: 25px;
+    margin: 0.5rem 0;
   }
 }
 </style>

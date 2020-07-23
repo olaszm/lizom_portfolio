@@ -2,9 +2,11 @@
   <header>
     <div class="drip"></div>
     <div class="wrapper">
-      <div class="logo">
-        <img src="@/assets/logo.svg" alt />
-      </div>
+      <router-link class="logo-routerlink" to="/">
+        <div class="logo">
+          <img src="@/assets/logo.svg" alt />
+        </div>
+      </router-link>
 
       <!-- <div class="navigation-web">
         <router-link
@@ -19,12 +21,15 @@
       <NavigationLinks />
 
       <div class="navigation-mobile" @click.stop="openMenu">
-        <i class="fas fa-bars"></i>
+        <HamburgerIcon />
+
+        <!-- <i class="fas fa-bars"></i> -->
       </div>
     </div>
 
     <transition name="fade" mode="out-in">
       <div class="test" v-if="isMenuOpen">
+        <!-- <NavigationLinks /> -->
         <router-link v-for="(link, index) in navLinks" :key="index" :to="link.slug">{{ link.title }}</router-link>
       </div>
     </transition>
@@ -44,16 +49,17 @@
 
 <script>
 import NavigationLinks from "@/components/NavigationLinks";
+import HamburgerIcon from "@/components/HamburgerIcon";
 
 export default {
   components: {
-    NavigationLinks
+    NavigationLinks,
+    HamburgerIcon
   },
   data() {
     return {
       navLinks: [
-        { slug: "/", title: "home" },
-        { slug: "/work", title: "work" },
+        { slug: "/", title: "work" },
         { slug: "/about", title: "about" },
         { slug: "/contact", title: "contact" }
       ],
@@ -111,25 +117,8 @@ header {
   position: relative;
 }
 
-.navigation-web {
-  @media screen and (max-width: $small-break) {
-    display: none;
-  }
-  a {
-    color: rgba(0, 0, 0, 0.5);
-    border: 2px solid transparent;
-    text-decoration: none;
-    text-transform: uppercase;
-    margin: 0 1rem;
-    padding: 0.3rem 0.8rem;
-    &:hover {
-      color: black;
-    }
-  }
-}
-
 .navigation-mobile {
-  transform: scale(1.3);
+  // transform: scale(1.3);
   cursor: pointer;
   display: none;
   @media screen and (max-width: $small-break) {
@@ -138,15 +127,30 @@ header {
 }
 
 .router-link-exact-active {
-  background-color: white;
-  color: black !important;
-  border: 2px solid black !important;
-  padding: 0.3rem 0.8rem;
+  // background-color: white;
+  // color: black;
+  // border: 2px solid black;
+  // padding: 0.3rem 0.8rem;
   @media screen and(max-width:$small-break) {
-    // color: white !important;
-    // border: none;
-    // border-bottom: 2px solid white !important;
+    border: 2px solid black !important;
+    background-color: $white;
+    font-weight: bold;
+    padding: 0 0.4rem;
+    color: black !important ;
   }
+}
+
+// .nav-routerlink {
+//   background-color: $white;
+//   color: black;
+//   border: 2px solid black;
+//   padding: 0.3rem 0.8rem;
+// }
+
+.logo-routerlink {
+  border: none !important;
+  background-color: transparent;
+  padding: 0;
 }
 
 // .btn {
@@ -161,7 +165,7 @@ header {
 // }
 
 .test {
-  z-index: 2;
+  z-index: 1;
   position: absolute;
   bottom: -90%;
   background-color: $primary;

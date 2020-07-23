@@ -12,8 +12,8 @@ import Footer from "@/components/Footer";
 export default {
   components: {
     NavBar,
-    Footer,
-  },
+    Footer
+  }
 };
 </script>
 
@@ -33,6 +33,9 @@ body {
 
 .main {
   padding-bottom: 220px;
+  @media screen and (max-width: $small-break) {
+    padding-bottom: 100px;
+  }
 }
 
 #app {

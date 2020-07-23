@@ -1,5 +1,6 @@
 <template>
-  <div class="about">
+  <div class="main">
+    <h3>About me</h3>
     <div class="wrapper">
       <div class="about-side">
         <p>Hello! My name is David.</p>
@@ -21,7 +22,7 @@
         </p>
       </div>
       <div class="photo">
-        <img src="@/assets/portrait.png" alt="" />
+        <img src="@/assets/portrait.png" alt />
       </div>
     </div>
   </div>
@@ -34,23 +35,49 @@ export default {};
 <style lang="scss" scoped>
 @import "@/style/_variables";
 
+.main {
+  text-align: left;
+  width: 60%;
+  margin: 0rem auto;
+  h3 {
+    text-align: left;
+    margin: 1rem 0;
+    text-transform: uppercase;
+  }
+  @media screen and (max-width: $small-break) {
+    margin-top: 2rem;
+    width: 90%;
+    h3 {
+      text-align: center;
+    }
+  }
+}
+
 .wrapper {
+  margin-bottom: 2rem;
   height: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 2rem auto;
-  width: 75%;
   font-size: 20px;
+  align-items: flex-start;
+  justify-content: space-between;
   @media screen and (max-width: $small-break) {
     width: 100%;
   }
+  // height: 100%;
+  // display: flex;
+  // flex-direction: row;
+  // justify-content: center;
+  // margin: 2rem auto;
+  // width: 60%;
+  // font-size: 20px;
+  // @media screen and (max-width: $small-break) {
+  //   width: 100%;
+  // }
 }
 
 .about-side {
   width: 60%;
   max-width: 550px;
-  margin: 1.5rem;
   @media screen and (max-width: $small-break) {
     width: initial;
     flex: 3;
