@@ -37,11 +37,12 @@ export default {};
 
 .main {
   text-align: left;
-  width: 60%;
+  width: 65%;
   margin: 0rem auto;
   h3 {
     text-align: left;
     margin: 1rem 0;
+    margin-top: 3rem;
     text-transform: uppercase;
   }
   @media screen and (max-width: $small-break) {
@@ -54,7 +55,7 @@ export default {};
 }
 
 .wrapper {
-  margin-bottom: 2rem;
+  margin-bottom: 5rem;
   height: 100%;
   display: flex;
   font-size: 20px;
@@ -79,7 +80,7 @@ export default {};
   width: 60%;
   max-width: 550px;
   @media screen and (max-width: $small-break) {
-    width: initial;
+    min-width: 150px;
     flex: 3;
   }
   p {
@@ -97,7 +98,7 @@ export default {};
   margin-top: 1rem;
   img {
     height: auto;
-    width: 105%;
+    width: 100%;
     min-width: 90px;
     max-width: 400px;
   }

@@ -20,15 +20,13 @@ export default {};
 @import "@/style/_variables";
 
 .wrapper {
-  width: 85%;
-  margin: 0 auto;
+  margin: 2rem auto;
   @media screen and (max-width: $small-break) {
     width: 90%;
   }
 }
 
 .showreel {
-  // margin: 5rem 0;
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */
   width: 100%;
@@ -37,12 +35,11 @@ export default {};
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 80%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
     transform: translate(-50%, -50%);
     z-index: 1;
     @media screen and (max-width: $small-break) {
-      margin: 5rem 0;
       width: 100%;
       height: 100%;
     }

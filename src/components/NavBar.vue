@@ -173,7 +173,7 @@ header {
   background-color: $primary;
   width: 100%;
   height: 100%;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   // transform: translate(0, 100%);
@@ -190,6 +190,10 @@ header {
     &:hover {
       color: black;
     }
+  }
+
+  @media screen and(max-width:$small-break) {
+    display: flex;
   }
 }
 

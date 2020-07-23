@@ -41,11 +41,12 @@ export default {
 
 .main {
   text-align: left;
-  width: 60%;
+  width: 65%;
   margin: 0rem auto;
   h3 {
     text-align: left;
     margin: 1rem 0;
+    margin-top: 3rem;
     text-transform: uppercase;
   }
   @media screen and (max-width: $small-break) {
@@ -58,12 +59,15 @@ export default {
 }
 
 .wrapper {
-  margin-bottom: 2rem;
+  margin-bottom: 5rem;
   height: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   @media screen and (max-width: $small-break) {
+    flex-direction: column;
+  }
+  @media screen and (max-width: $medium-break) {
     flex-direction: column;
   }
 }
@@ -74,6 +78,7 @@ form {
   text-align: left;
   width: 100%;
   max-width: 500px;
+  min-width: 300px;
   display: flex;
   padding: 1rem;
   flex-direction: column;
@@ -87,6 +92,7 @@ form {
     font-size: 16px;
     background-color: #c4c4c4;
     border: none;
+    padding: 0 0.4rem;
     &:focus {
       border: 5px solid black;
     }
@@ -96,6 +102,7 @@ form {
     font-size: 16px;
     background-color: #c4c4c4;
     resize: none;
+    padding: 0.1rem 0.4rem;
     &:focus {
       border: 5px solid black;
     }
@@ -127,15 +134,19 @@ form {
   margin: 0 3rem;
   img {
     border-radius: 50%;
-    width: 400px;
-    height: 400px;
+    width: 350px;
+    height: 350px;
     object-fit: cover;
 
     @media screen and (max-width: $small-break) {
-      width: 150px;
-      height: 150px;
-      margin: 1.2rem;
+      display: none;
+      // width: 150px;
+      // height: 150px;
+      // margin: 1.2rem;
     }
+  }
+  @media screen and (max-width: $medium-break) {
+    margin: 1rem auto;
   }
 }
 </style>

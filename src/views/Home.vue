@@ -1,6 +1,9 @@
 <template>
-  <div>
-    <VideoPlayer />
+  <div class="main">
+    <h3>showreel</h3>
+    <div>
+      <VideoPlayer />
+    </div>
   </div>
 </template>
 
@@ -10,29 +13,29 @@ import VideoPlayer from "@/components/VideoPlayer";
 // import ImageGallery from "@/components/ImageGallery";
 export default {
   name: "Home",
-  components: { VideoPlayer },
+  components: { VideoPlayer }
 };
 </script>
 
 <style lang="scss" scoped>
-.home {
-  height: 100%;
-  width: 100%;
-}
+@import "@/style/_variables";
 
-.btn {
-  padding: 0.5rem 0.8rem;
-  text-transform: uppercase;
-  border: none;
-  margin: 1rem 0;
-  cursor: pointer;
-  &:hover {
-    border-bottom: 2px solid black;
-    font-weight: bold;
+.main {
+  text-align: left;
+  width: 65%;
+  margin: 0rem auto;
+  h3 {
+    text-align: left;
+    margin: 1rem 0;
+    margin-top: 3rem;
+    text-transform: uppercase;
   }
-  &:active {
-    border: 2px solid black;
-    font-weight: bold;
+  @media screen and (max-width: $small-break) {
+    margin-top: 2rem;
+    width: 90%;
+    h3 {
+      text-align: center;
+    }
   }
 }
 </style>

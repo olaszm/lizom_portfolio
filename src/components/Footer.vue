@@ -7,7 +7,7 @@
             <i class="fab fa-instagram"></i>
           </div>
         </a>
-        <a href target="_blank">
+        <a href="https://www.linkedin.com/in/david-lizom-12b80b164/" target="_blank">
           <div class="social-btn">
             <i class="fab fa-linkedin"></i>
           </div>
