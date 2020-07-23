@@ -7,11 +7,28 @@
 </template>
 
 <script>
+import { EventBus } from "@/plugins/EventBus";
+
 export default {
+  data() {
+    return {
+      isMenuOpen: false
+    };
+  },
   methods: {
     myFunction() {
-      this.$refs.cont.classList.toggle("change");
+      if (this.isMenuOpen) {
+        this.$refs.cont.classList.add("change");
+      } else {
+        this.$refs.cont.classList.remove("change");
+      }
     }
+  },
+  created() {
+    EventBus.$on("MenuState", state => {
+      this.isMenuOpen = state;
+      this.myFunction();
+    });
   }
 };
 </script>

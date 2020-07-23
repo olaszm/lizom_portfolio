@@ -22,14 +22,11 @@
 
       <div class="navigation-mobile" @click.stop="openMenu">
         <HamburgerIcon />
-
-        <!-- <i class="fas fa-bars"></i> -->
       </div>
     </div>
 
     <transition name="fade" mode="out-in">
       <div class="test" v-if="isMenuOpen">
-        <!-- <NavigationLinks /> -->
         <router-link v-for="(link, index) in navLinks" :key="index" :to="link.slug">{{ link.title }}</router-link>
       </div>
     </transition>
@@ -50,7 +47,7 @@
 <script>
 import NavigationLinks from "@/components/NavigationLinks";
 import HamburgerIcon from "@/components/HamburgerIcon";
-
+import { EventBus } from "@/plugins/EventBus";
 export default {
   components: {
     NavigationLinks,
@@ -77,6 +74,11 @@ export default {
         this.openMenu();
       }
     });
+  },
+  watch: {
+    isMenuOpen: function(newVal) {
+      EventBus.$emit("MenuState", newVal);
+    }
   }
 };
 </script>
