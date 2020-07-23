@@ -33,26 +33,7 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-@import "@/style/_variables";
-
-.main {
-  text-align: left;
-  width: 65%;
-  margin: 0rem auto;
-  h3 {
-    text-align: left;
-    margin: 1rem 0;
-    margin-top: 3rem;
-    text-transform: uppercase;
-  }
-  @media screen and (max-width: $small-break) {
-    margin-top: 2rem;
-    width: 90%;
-    h3 {
-      text-align: center;
-    }
-  }
-}
+@import "@/style/_util";
 
 .wrapper {
   margin-bottom: 5rem;
@@ -62,35 +43,26 @@ export default {};
   align-items: flex-start;
   justify-content: space-between;
   @media screen and (max-width: $small-break) {
+    flex-direction: column;
     width: 100%;
+    font-size: 16px;
   }
-  // height: 100%;
-  // display: flex;
-  // flex-direction: row;
-  // justify-content: center;
-  // margin: 2rem auto;
-  // width: 60%;
-  // font-size: 20px;
-  // @media screen and (max-width: $small-break) {
-  //   width: 100%;
-  // }
 }
 
 .about-side {
-  width: 60%;
   max-width: 550px;
-  @media screen and (max-width: $small-break) {
-    min-width: 150px;
-    flex: 3;
-  }
   p {
     text-align: left;
     margin: 1rem 0;
   }
+  @media screen and (max-width: $small-break) {
+    order: 2;
+    min-width: 180px;
+  }
 }
 
 .photo {
-  flex: 1;
+  width: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: flex-end;
@@ -99,8 +71,16 @@ export default {};
   img {
     height: auto;
     width: 100%;
-    min-width: 90px;
+    min-width: 200px;
     max-width: 400px;
+  }
+  @media screen and (max-width: $small-break) {
+    justify-content: center;
+    margin: 1rem auto;
+    img {
+      min-width: 100px;
+      max-width: 150px;
+    }
   }
 }
 </style>

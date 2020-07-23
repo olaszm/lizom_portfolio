@@ -8,16 +8,6 @@
         </div>
       </router-link>
 
-      <!-- <div class="navigation-web">
-        <router-link
-          class="btn"
-          v-for="(link, index) in navLinks"
-          :key="index"
-          :to="link.slug"
-          >{{ link.title }}</router-link
-        >
-      </div>-->
-
       <NavigationLinks />
 
       <div class="navigation-mobile" @click.stop="openMenu">
@@ -30,17 +20,6 @@
         <router-link v-for="(link, index) in navLinks" :key="index" :to="link.slug">{{ link.title }}</router-link>
       </div>
     </transition>
-
-    <!-- <transition name="fade" mode="out-in">
-      <div class="dropdown-menu" v-if="isMenuOpen">
-        <router-link
-          v-for="(link, index) in navLinks"
-          :key="index"
-          :to="link.slug"
-          >{{ link.title }}</router-link
-        >
-      </div>
-    </transition>-->
   </header>
 </template>
 
@@ -84,7 +63,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/style/_variables";
+@import "@/style/_util";
 
 header {
   z-index: 2;
@@ -112,7 +91,7 @@ header {
   z-index: 2;
   height: 100%;
   display: flex;
-  width: 80%;
+  width: 65%;
   margin: 0.2rem auto;
   align-items: center;
   justify-content: space-between;
@@ -129,10 +108,6 @@ header {
 }
 
 .router-link-exact-active {
-  // background-color: white;
-  // color: black;
-  // border: 2px solid black;
-  // padding: 0.3rem 0.8rem;
   @media screen and(max-width:$small-break) {
     border: 2px solid black !important;
     background-color: $white;
@@ -142,29 +117,11 @@ header {
   }
 }
 
-// .nav-routerlink {
-//   background-color: $white;
-//   color: black;
-//   border: 2px solid black;
-//   padding: 0.3rem 0.8rem;
-// }
-
 .logo-routerlink {
   border: none !important;
   background-color: transparent;
   padding: 0;
 }
-
-// .btn {
-//   padding: 0.5rem 0.8rem;
-//   text-transform: uppercase;
-//   border: none;
-//   cursor: pointer;
-//   &:hover {
-//     border-bottom: 2px solid black;
-//     font-weight: bold;
-//   }
-// }
 
 .test {
   z-index: 1;
@@ -176,7 +133,6 @@ header {
   display: none;
   align-items: center;
   justify-content: center;
-  // transform: translate(0, 100%);
   a {
     color: rgba(0, 0, 0, 0.5);
     border: 2px solid transparent;
@@ -198,7 +154,6 @@ header {
 }
 
 .dropdown-menu {
-  // z-index: ;
   position: absolute;
   bottom: 0;
   font-size: 20px;

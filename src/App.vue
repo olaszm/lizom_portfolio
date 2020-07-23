@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/style/_variables";
+@import "@/style/_util";
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap");
 
 * {
@@ -46,5 +46,9 @@ body {
   color: #2c3e50;
   position: relative;
   min-height: 100vh;
+  font-size: 20px;
+  @media screen and (max-width: $small-break) {
+    font-size: 16px;
+  }
 }
 </style>

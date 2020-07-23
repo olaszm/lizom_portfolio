@@ -18,24 +18,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/style/_variables";
-
-.main {
-  text-align: left;
-  width: 65%;
-  margin: 0rem auto;
-  h3 {
-    text-align: left;
-    margin: 1rem 0;
-    margin-top: 3rem;
-    text-transform: uppercase;
-  }
-  @media screen and (max-width: $small-break) {
-    margin-top: 2rem;
-    width: 90%;
-    h3 {
-      text-align: center;
-    }
-  }
-}
+@import "@/style/_util";
 </style>

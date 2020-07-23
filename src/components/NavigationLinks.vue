@@ -24,22 +24,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/style/_variables";
+@import "@/style/_util";
 
 .navigation-web {
-  @media screen and (max-width: $small-break) {
-    display: none;
-  }
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   a {
+    display: flex;
+    align-items: center;
     color: rgba(0, 0, 0, 0.5);
     border: 2px solid transparent;
     text-decoration: none;
     text-transform: uppercase;
-    margin: 0 1rem;
-    padding: 0.3rem 0.8rem;
+    display: block;
+    height: 35px;
+    line-height: 30px;
+    width: 90px;
+
+    // margin: 0 0.5rem;
+    // padding: 0.3rem 0.8rem;
     &:hover {
       color: black;
     }
+  }
+  @media screen and (max-width: $small-break) {
+    display: none;
   }
 }
 .router-link-exact-active {

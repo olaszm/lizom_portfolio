@@ -37,26 +37,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/style/_variables";
-
-.main {
-  text-align: left;
-  width: 65%;
-  margin: 0rem auto;
-  h3 {
-    text-align: left;
-    margin: 1rem 0;
-    margin-top: 3rem;
-    text-transform: uppercase;
-  }
-  @media screen and (max-width: $small-break) {
-    margin-top: 2rem;
-    width: 90%;
-    h3 {
-      text-align: center;
-    }
-  }
-}
+@import "@/style/_util";
 
 .wrapper {
   margin-bottom: 5rem;
@@ -74,11 +55,12 @@ export default {
 
 form {
   background-color: $white;
-  border: 5px solid black;
+  // border: 5px solid black;
+  font-size: 16px;
   text-align: left;
   width: 100%;
   max-width: 500px;
-  min-width: 300px;
+  min-width: 280px;
   display: flex;
   padding: 1rem;
   flex-direction: column;
@@ -88,8 +70,9 @@ form {
   }
   input {
     font-family: "Open Sans", sans-serif;
+    outline: none;
     height: 40px;
-    font-size: 16px;
+
     background-color: #c4c4c4;
     border: none;
     padding: 0 0.4rem;
@@ -99,7 +82,9 @@ form {
   }
   textarea {
     font-family: "Open Sans", sans-serif;
-    font-size: 16px;
+    outline: none;
+
+    border: none;
     background-color: #c4c4c4;
     resize: none;
     padding: 0.1rem 0.4rem;

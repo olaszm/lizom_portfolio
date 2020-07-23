@@ -2,17 +2,27 @@
   <footer>
     <div class="top-section">
       <div class="social-buttons">
-        <a href="https://www.instagram.com/lizomdavid/" target="_blank">
+        <a
+          href="https://www.instagram.com/lizomdavid/"
+          title="Instagram"
+          rel="noopener"
+          target="_blank"
+        >
           <div class="social-btn">
             <i class="fab fa-instagram"></i>
           </div>
         </a>
-        <a href="https://www.linkedin.com/in/david-lizom-12b80b164/" target="_blank">
+        <a
+          href="https://www.linkedin.com/in/david-lizom-12b80b164/"
+          title="LinkedIn"
+          target="_blank"
+          rel="noopener"
+        >
           <div class="social-btn">
             <i class="fab fa-linkedin"></i>
           </div>
         </a>
-        <a href="https://www.behance.net/davidlizom" target="_blank">
+        <a href="https://www.behance.net/davidlizom" title="Behance" rel="noopener" target="_blank">
           <div class="social-btn">
             <i class="fab fa-behance"></i>
           </div>
@@ -35,7 +45,7 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-@import "@/style/_variables";
+@import "@/style/_util";
 
 a {
   color: black;

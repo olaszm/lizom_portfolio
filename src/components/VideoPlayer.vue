@@ -17,7 +17,7 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-@import "@/style/_variables";
+@import "@/style/_util";
 
 .wrapper {
   margin: 2rem auto;
