@@ -30,35 +30,35 @@ import { EventBus } from "@/plugins/EventBus";
 export default {
   components: {
     NavigationLinks,
-    HamburgerIcon
+    HamburgerIcon,
   },
   data() {
     return {
       navLinks: [
         { slug: "/", title: "work" },
         { slug: "/about", title: "about" },
-        { slug: "/contact", title: "contact" }
+        { slug: "/contact", title: "contact" },
       ],
-      isMenuOpen: false
+      isMenuOpen: false,
     };
   },
   methods: {
     openMenu() {
       this.isMenuOpen = !this.isMenuOpen;
-    }
+    },
   },
   mounted() {
-    window.addEventListener("click", e => {
+    window.addEventListener("click", (e) => {
       if (!e.target.className.includes("dropdown-menu") && this.isMenuOpen) {
         this.openMenu();
       }
     });
   },
   watch: {
-    isMenuOpen: function(newVal) {
+    isMenuOpen: function (newVal) {
       EventBus.$emit("MenuState", newVal);
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -96,6 +96,9 @@ header {
   align-items: center;
   justify-content: space-between;
   position: relative;
+  @media screen and (max-width: $small-break) {
+    width: 90%;
+  }
 }
 
 .navigation-mobile {
