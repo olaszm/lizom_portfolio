@@ -19,7 +19,7 @@ export default {
 
 <style lang="scss">
 @import "@/style/_util";
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
 
 * {
   padding: 0;
@@ -32,20 +32,14 @@ body {
 }
 
 .main {
-  padding-bottom: 220px;
-  @media screen and (max-width: $small-break) {
-    padding-bottom: 100px;
-  }
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
 }
 
 #app {
-  font-family: "Open Sans", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Rubik", sans-serif;
   text-align: center;
-  color: #2c3e50;
-  position: relative;
-  min-height: 100vh;
   font-size: 20px;
   @media screen and (max-width: $small-break) {
     font-size: 16px;

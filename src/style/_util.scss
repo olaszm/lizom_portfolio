@@ -1,5 +1,5 @@
-$small-break: 580px;
-$medium-break: 900px;
+$small-break: 600px;
+$medium-break: 992px;
 $primary: #ffca00;
 $white: #eeeeee;
 
@@ -12,9 +12,11 @@ $white: #eeeeee;
     margin: 1rem 0;
     margin-top: 3rem;
     text-transform: uppercase;
+    font-weight: bold;
+    font-size: 24px;
   }
   @media screen and (max-width: $small-break) {
-    margin-top: 2rem;
+    margin-top: 1rem;
     width: 90%;
     h3 {
       text-align: center;

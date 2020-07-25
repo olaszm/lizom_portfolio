@@ -54,6 +54,7 @@ a {
 }
 
 footer {
+  margin-top: auto;
   font-size: 12px;
   display: flex;
   flex-direction: column;
@@ -63,14 +64,14 @@ footer {
   background-color: black;
   color: $white;
   width: 100%;
-  padding: 1rem 0;
+  height: 440px;
 
-  //   Test
-  position: absolute;
-  bottom: 0;
-  height: 220px;
+  // //   Test
+  // position: absolute;
+  // bottom: 0;
+  // height: 220px;
   @media screen and (max-width: $small-break) {
-    height: 110px;
+    height: 150px;
   }
 }
 
@@ -81,32 +82,35 @@ footer {
 }
 
 .phone-number {
-  margin: 0.4rem 0;
+  margin: 0.5rem 0;
+  margin-bottom: 2rem;
 
   @media screen and (max-width: $small-break) {
-    font-size: 10px;
+    font-size: 12px;
     margin: 0.2rem 0;
   }
 }
 
 .copy {
   @media screen and (max-width: $small-break) {
-    font-size: 10px;
+    font-size: 12px;
   }
 }
 
 .social-btn {
   background-color: $white;
   border-radius: 50%;
-  height: 25px;
-  width: 25px;
+  width: 2rem;
+  height: 2rem;
+  padding: 0.25em;
   display: flex;
-  margin: 0 0.5rem;
   align-items: center;
   justify-content: center;
   border: 1px solid black;
   cursor: pointer;
+  margin: 0 0.5rem;
   i {
+    font-size: 18px;
     color: black;
   }
   &:hover {
@@ -117,14 +121,17 @@ footer {
     }
   }
   @media screen and (max-width: $small-break) {
-    height: 15px;
-    width: 15px;
-    padding: 0.6rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0.3em;
+    i {
+      font-size: 14px;
+    }
   }
 }
 
 .footer-logo {
-  height: 40px;
+  height: 45px;
   margin: 1rem 0;
   img {
     height: inherit;

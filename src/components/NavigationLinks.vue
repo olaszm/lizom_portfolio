@@ -32,19 +32,21 @@ export default {
   align-items: center;
   justify-content: space-between;
   a {
-    display: flex;
-    align-items: center;
-    color: rgba(0, 0, 0, 0.5);
-    border: 2px solid transparent;
+    color: black;
     text-decoration: none;
     text-transform: uppercase;
-    display: block;
-    height: 35px;
-    line-height: 30px;
-    width: 90px;
-
-    // margin: 0 0.5rem;
-    // padding: 0.3rem 0.8rem;
+    // display: block;
+    // min-height: 35px;
+    // line-height: 2;
+    // min-width: 8ch;
+    // padding: 0.25em 0.75em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 35px;
+    min-width: 8ch;
+    padding: 0.25em 0.75em;
+    line-height: 1.5;
     &:hover {
       color: black;
     }

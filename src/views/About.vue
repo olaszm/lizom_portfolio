@@ -1,8 +1,11 @@
 <template>
   <div class="main">
-    <h3>About me</h3>
     <div class="wrapper">
+      <div class="photo">
+        <img src="@/assets/portrait.png" alt />
+      </div>
       <div class="about-side">
+        <h3>About me</h3>
         <p>Hello! My name is David.</p>
         <p>I am a hungarian illustrator and motion designer living in Pecs</p>
 
@@ -21,9 +24,6 @@
           idea. :)
         </p>
       </div>
-      <div class="photo">
-        <img src="@/assets/portrait.png" alt />
-      </div>
     </div>
   </div>
 </template>
@@ -36,47 +36,53 @@ export default {};
 @import "@/style/_util";
 
 .wrapper {
-  margin-bottom: 5rem;
-  height: 100%;
+  padding: 0 2rem;
+  margin-top: 3rem;
+  min-height: 100%;
   display: flex;
-  font-size: 20px;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   @media screen and (max-width: $small-break) {
     flex-direction: column;
     width: 100%;
-    font-size: 16px;
+    padding: 0;
   }
 }
 
 .about-side {
   max-width: 550px;
+  min-width: 300px;
+
+  h3 {
+    margin: 0;
+  }
   p {
     text-align: left;
-    margin: 1rem 0;
+    margin: 2rem 0;
   }
   @media screen and (max-width: $small-break) {
-    order: 2;
     min-width: 180px;
   }
 }
 
 .photo {
+  height: 100%;
   width: 100%;
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
-  margin: 0 2rem;
-  margin-top: 1rem;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: 2.5rem;
   img {
     height: auto;
     width: 100%;
     min-width: 200px;
     max-width: 400px;
   }
+
   @media screen and (max-width: $small-break) {
     justify-content: center;
-    margin: 1rem auto;
+    margin: 0 auto;
+    margin-bottom: 2rem;
     img {
       min-width: 100px;
       max-width: 150px;

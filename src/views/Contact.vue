@@ -2,7 +2,7 @@
   <div class="main">
     <h3>Contact Me</h3>
     <div class="wrapper">
-      <form action>
+      <form action @submit.prevent="sendForm">
         <label for="name">Name</label>
         <input type="text" v-model="name" />
         <label for="Email">Email</label>
@@ -10,7 +10,7 @@
         <label for="Subject">Subject</label>
         <input type="text" v-model="subject" />
         <label for="Message">Message</label>
-        <textarea name="message" v-model="message" rows="5"></textarea>
+        <textarea name="message" v-model="message" rows="10"></textarea>
         <div class="submit-btn-container">
           <input type="submit" value="Submit" class="submit-btn" />
         </div>
@@ -20,18 +20,50 @@
         <img src="https://i.giphy.com/media/kI3xXDgyaNQubMfPuC/giphy.webp" alt />
       </div>
     </div>
+
+    <transition name="fade">
+      <Modal v-if="isModalOpen">
+        <h2>koszipuszi</h2>
+      </Modal>
+    </transition>
   </div>
 </template>
 
 <script>
+import Modal from "@/components/Modal";
+import { EventBus } from "@/plugins/EventBus";
+
 export default {
+  components: {
+    Modal
+  },
   data() {
     return {
       name: "",
       email: "",
       subject: "",
-      message: ""
+      message: "",
+      isModalOpen: false
     };
+  },
+
+  methods: {
+    sendForm() {
+      const msg = {
+        name: this.name,
+        email: this.email,
+        subject: this.subject,
+        message: this.message
+      };
+
+      console.log(msg);
+      this.isModalOpen = true;
+    }
+  },
+  created() {
+    EventBus.$on("closeModal", state => {
+      this.isModalOpen = state;
+    });
   }
 };
 </script>
@@ -40,7 +72,6 @@ export default {
 @import "@/style/_util";
 
 .wrapper {
-  margin-bottom: 5rem;
   height: 100%;
   display: flex;
   align-items: flex-start;
@@ -55,7 +86,6 @@ export default {
 
 form {
   background-color: $white;
-  // border: 5px solid black;
   font-size: 16px;
   text-align: left;
   width: 100%;
@@ -68,28 +98,30 @@ form {
   label {
     margin: 1rem 0;
   }
-  input {
-    font-family: "Open Sans", sans-serif;
+  input[type="text"],
+  input[type="email"] {
+    font-family: "Rubik", sans-serif;
     outline: none;
     height: 40px;
-
-    background-color: #c4c4c4;
-    border: none;
+    background-color: $white;
+    border: 1px solid black;
     padding: 0 0.4rem;
+    transition: all 100ms ease;
     &:focus {
-      border: 5px solid black;
+      border: 3px solid black;
     }
   }
   textarea {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Rubik", sans-serif;
+    box-sizing: border-box;
     outline: none;
-
-    border: none;
-    background-color: #c4c4c4;
+    border: 1px solid black;
+    background-color: $white;
     resize: none;
     padding: 0.1rem 0.4rem;
+    transition: all 100ms ease;
     &:focus {
-      border: 5px solid black;
+      border: 3px solid black;
     }
   }
 }
@@ -101,17 +133,18 @@ form {
 
 .submit-btn {
   width: 40%;
+  height: 50px;
   text-align: center;
   text-transform: uppercase;
+  font-size: 18px;
   border: none;
   cursor: pointer;
-  background-color: black;
-  color: $white;
+  background-color: $primary;
+  color: black;
   margin: 1rem 0;
   &:hover {
     background-color: $white;
-    color: black;
-    border: 5px solid black;
+    border: 3px solid black;
   }
 }
 
@@ -125,9 +158,6 @@ form {
 
     @media screen and (max-width: $small-break) {
       display: none;
-      // width: 150px;
-      // height: 150px;
-      // margin: 1.2rem;
     }
   }
   @media screen and (max-width: $medium-break) {
