@@ -5,7 +5,7 @@
       <router-link class="logo-routerlink" to="/">
         <div class="logo">
           <img src="@/assets/logo.svg" alt />
-          <img class="logo-text" src="@/assets/logo-text.svg" alt />
+          <img class="logo-text" src="@/assets/logo-gif.gif" alt />
         </div>
       </router-link>
 
@@ -18,7 +18,12 @@
 
     <transition name="fade" mode="out-in">
       <div class="test" v-if="isMenuOpen">
-        <router-link v-for="(link, index) in navLinks" :key="index" :to="link.slug">{{ link.title }}</router-link>
+        <router-link
+          v-for="(link, index) in navLinks"
+          :key="index"
+          :to="link.slug"
+          >{{ link.title }}</router-link
+        >
       </div>
     </transition>
   </header>
@@ -56,7 +61,7 @@ export default {
     });
   },
   watch: {
-    isMenuOpen: function (newVal) {
+    isMenuOpen: function(newVal) {
       EventBus.$emit("MenuState", newVal);
     },
   },

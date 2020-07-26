@@ -6,6 +6,10 @@
       :key="index"
       :to="link.slug"
     >{{ link.title }}</router-link>
+    <div class="locale">
+      <p>hu</p>
+      <p>eng</p>
+    </div>
   </div>
 </template>
 
