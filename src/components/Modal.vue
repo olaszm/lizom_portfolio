@@ -18,8 +18,8 @@ export default {
       ) {
         EventBus.$emit("closeModal", false);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -36,7 +36,7 @@ export default {
   width: 100%;
   background-color: rgba($color: #000000, $alpha: 0.5);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   font-size: 20px;
 }
@@ -48,10 +48,14 @@ export default {
   height: 150px;
   width: 20%;
   min-width: 290px;
+  margin-top: 25%;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  @media screen and (max-width: $small-break) {
+    margin-top: 100%;
+  }
 }
 
 .close-btn {

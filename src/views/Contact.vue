@@ -21,21 +21,21 @@
       </div>
     </div>
 
-    <transition name="fade">
+    <!-- <transition name="fade">
       <Modal v-if="isModalOpen">
         <h2>koszipuszi</h2>
       </Modal>
-    </transition>
+    </transition>-->
   </div>
 </template>
 
 <script>
-import Modal from "@/components/Modal";
+// import Modal from "@/components/Modal";
 import { EventBus } from "@/plugins/EventBus";
 
 export default {
   components: {
-    Modal
+    // Modal
   },
   data() {
     return {
@@ -43,7 +43,7 @@ export default {
       email: "",
       subject: "",
       message: "",
-      isModalOpen: false
+      // isModalOpen: false,
     };
   },
 
@@ -53,18 +53,21 @@ export default {
         name: this.name,
         email: this.email,
         subject: this.subject,
-        message: this.message
+        message: this.message,
       };
 
       console.log(msg);
-      this.isModalOpen = true;
-    }
+      // this.isModalOpen = true;
+      EventBus.$emit("closeModal", (state) => {
+        this.isModalOpen = state;
+      });
+    },
   },
   created() {
-    EventBus.$on("closeModal", state => {
+    EventBus.$on("closeModal", (state) => {
       this.isModalOpen = state;
     });
-  }
+  },
 };
 </script>
 
