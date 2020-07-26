@@ -64,7 +64,7 @@ footer {
   background-color: black;
   color: $white;
   width: 100%;
-  height: 440px;
+  height: 300px;
 
   // //   Test
   // position: absolute;

@@ -5,6 +5,7 @@
       <router-link class="logo-routerlink" to="/">
         <div class="logo">
           <img src="@/assets/logo.svg" alt />
+          <img class="logo-text" src="@/assets/logo-text.svg" alt />
         </div>
       </router-link>
 
@@ -78,12 +79,22 @@ header {
 }
 
 .logo {
-  height: 65%;
+  // height: 65%;
   display: flex;
   align-items: center;
+  justify-content: center;
   img {
-    height: 100%;
-    width: 100%;
+    // height: 100%;
+    // height: auto;
+    // width: 100%;
+    margin: 0 0.5rem;
+  }
+}
+
+.logo-text {
+  height: 30px;
+  @media screen and (max-width: $small-break) {
+    height: 24px;
   }
 }
 
@@ -114,7 +125,6 @@ header {
   @media screen and(max-width:$small-break) {
     border: 2px solid black !important;
     background-color: $white;
-    font-weight: bold;
     padding: 0 0.4rem;
     color: black !important ;
   }

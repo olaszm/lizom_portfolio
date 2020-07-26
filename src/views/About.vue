@@ -37,7 +37,6 @@ export default {};
 
 .wrapper {
   padding: 0 2rem;
-  margin-top: 3rem;
   min-height: 100%;
   display: flex;
   align-items: center;

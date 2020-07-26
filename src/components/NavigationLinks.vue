@@ -16,10 +16,10 @@ export default {
       navLinks: [
         { slug: "/", title: "work" },
         { slug: "/about", title: "about" },
-        { slug: "/contact", title: "contact" }
-      ]
+        { slug: "/contact", title: "contact" },
+      ],
     };
-  }
+  },
 };
 </script>
 
@@ -35,11 +35,7 @@ export default {
     color: black;
     text-decoration: none;
     text-transform: uppercase;
-    // display: block;
-    // min-height: 35px;
-    // line-height: 2;
-    // min-width: 8ch;
-    // padding: 0.25em 0.75em;
+    font-weight: 300;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -57,7 +53,8 @@ export default {
 }
 .router-link-exact-active {
   border: 2px solid black !important;
-  font-weight: bold !important;
+  font-weight: 400 !important;
   color: black !important;
+  line-height: 1.5 !important;
 }
 </style>

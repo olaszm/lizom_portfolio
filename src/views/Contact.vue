@@ -92,7 +92,7 @@ form {
   font-size: 16px;
   text-align: left;
   width: 100%;
-  max-width: 500px;
+  max-width: 550px;
   min-width: 280px;
   display: flex;
   padding: 1rem;
