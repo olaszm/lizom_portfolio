@@ -1,26 +1,45 @@
 <template>
   <footer>
-    <div class="social-buttons">
-      <a href="https://www.instagram.com/lizomdavid/" target="_blank">
-        <div class="social-btn">
-          <i class="fab fa-instagram"></i>
-        </div>
-      </a>
-      <a href target="_blank">
-        <div class="social-btn">
-          <i class="fab fa-linkedin"></i>
-        </div>
-      </a>
-      <a href="https://www.behance.net/davidlizom" target="_blank">
-        <div class="social-btn">
-          <i class="fab fa-behance"></i>
-        </div>
-      </a>
+    <div class="top-section">
+      <div class="social-buttons">
+        <a
+          href="https://www.instagram.com/lizomdavid/"
+          title="Instagram"
+          rel="noopener"
+          target="_blank"
+        >
+          <div class="social-btn">
+            <i class="fab fa-instagram"></i>
+          </div>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/david-lizom-12b80b164/"
+          title="LinkedIn"
+          target="_blank"
+          rel="noopener"
+        >
+          <div class="social-btn">
+            <i class="fab fa-linkedin"></i>
+          </div>
+        </a>
+        <a
+          href="https://www.behance.net/davidlizom"
+          title="Behance"
+          rel="noopener"
+          target="_blank"
+        >
+          <div class="social-btn">
+            <i class="fab fa-behance"></i>
+          </div>
+        </a>
+      </div>
+      <p class="phone-number">{{ $t("footer.phone") }}</p>
     </div>
+
     <div class="footer-logo">
       <img src="@/assets/logotype.svg" alt />
       <div class="copy">
-        <p>&copy; Copyright 2020. All rights reserved.</p>
+        <p>{{ $t("footer.copyrights") }}</p>
       </div>
     </div>
   </footer>
@@ -31,7 +50,7 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-@import "@/style/_variables";
+@import "@/style/_util";
 
 a {
   color: black;
@@ -40,7 +59,7 @@ a {
 }
 
 footer {
-  z-index: -1;
+  margin-top: auto;
   font-size: 12px;
   display: flex;
   flex-direction: column;
@@ -48,52 +67,80 @@ footer {
   justify-content: center;
   text-align: center;
   background-color: black;
-  color: #eeeeee;
+  color: $white;
   width: 100%;
-  padding: 1rem 0;
+  height: 300px;
 
-  //   Test
-  position: absolute;
-  bottom: 0;
-  height: 220px;
+  @media screen and (max-width: $small-break) {
+    height: 180px;
+  }
 }
 
 .social-buttons {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.phone-number {
+  margin: 0.5rem 0;
   margin-bottom: 2rem;
+
+  @media screen and (max-width: $small-break) {
+    font-size: 12px;
+    margin: 0.2rem 0;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.copy {
+  @media screen and (max-width: $small-break) {
+    font-size: 12px;
+  }
 }
 
 .social-btn {
-  background-color: white;
+  background-color: $white;
   border-radius: 50%;
-  height: 25px;
-  width: 25px;
+  width: 2rem;
+  height: 2rem;
+  padding: 0.25em;
   display: flex;
-  margin: 0 0.5rem;
   align-items: center;
   justify-content: center;
   border: 1px solid black;
   cursor: pointer;
-  transform: scale(1.2);
+  margin: 0 0.5rem;
   i {
+    font-size: 18px;
     color: black;
   }
   &:hover {
     background-color: black;
-    border: 1px solid white;
+    border: 1px solid $white;
     i {
-      color: white;
+      color: $white;
+    }
+  }
+  @media screen and (max-width: $small-break) {
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0.3em;
+    i {
+      font-size: 14px;
     }
   }
 }
 
 .footer-logo {
-  height: 40px;
+  height: 45px;
   margin: 1rem 0;
   img {
     height: inherit;
+  }
+  @media screen and (max-width: $small-break) {
+    height: 25px;
+    margin: 0.5rem 0;
   }
 }
 </style>

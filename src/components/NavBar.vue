@@ -2,29 +2,23 @@
   <header>
     <div class="drip"></div>
     <div class="wrapper">
-      <div class="logo">
-        <img src="@/assets/logo.svg" alt />
-      </div>
-      <!-- 
-      <div class="navigation-web">
-        <router-link
-          class="btn"
-          v-for="(link, index) in navLinks"
-          :key="index"
-          :to="link.slug"
-          >{{ link.title }}</router-link
-        >
-      </div>-->
-      <NavigationLinks />
+      <router-link class="logo-routerlink" to="/">
+        <div class="logo">
+          <img src="@/assets/logo.svg" alt />
+          <img class="logo-text" src="@/assets/logo-gif.gif" alt />
+        </div>
+      </router-link>
+
+      <NavigationLinks v-if="!isMobile" />
 
       <div class="navigation-mobile" @click.stop="openMenu">
-        <i class="fas fa-bars"></i>
+        <HamburgerIcon />
       </div>
     </div>
 
     <transition name="fade" mode="out-in">
-      <div class="dropdown-menu" v-if="isMenuOpen">
-        <router-link v-for="(link, index) in navLinks" :key="index" :to="link.slug">{{ link.title }}</router-link>
+      <div class="test" v-show="isMenuOpen">
+        <NavigationLinks />
       </div>
     </transition>
   </header>
@@ -32,62 +26,84 @@
 
 <script>
 import NavigationLinks from "@/components/NavigationLinks";
-import { EventBus } from "@/plugins/eventbus";
-
+import HamburgerIcon from "@/components/HamburgerIcon";
+import { EventBus } from "@/plugins/EventBus";
 export default {
   components: {
-    NavigationLinks
+    NavigationLinks,
+    HamburgerIcon,
   },
   data() {
     return {
-      navLinks: [
-        { slug: "/", title: "home" },
-        { slug: "/work", title: "work" },
-        { slug: "/about", title: "about" },
-        { slug: "/contact", title: "contact" }
-      ],
-      isMenuOpen: false
+      isMobile: false,
+      isMenuOpen: false,
     };
   },
   methods: {
     openMenu() {
       this.isMenuOpen = !this.isMenuOpen;
-      EventBus.$emit("MenuState", this.isMenuOpen);
-    }
+    },
+    onResize() {
+      this.isMobile = window.innerWidth < 600;
+    },
   },
   mounted() {
-    window.addEventListener("click", e => {
-      if (!e.target.className.includes("dropdown-menu") && this.isMenuOpen) {
+    this.onResize();
+    window.addEventListener("resize", this.onResize, { passive: true });
+    window.addEventListener("click", (e) => {
+      console.log(e.target);
+      if (
+        (e.target.className.includes("switch-text") && this.isMenuOpen) ||
+        (e.target.className.includes("label") && this.isMenuOpen) ||
+        (e.target.className.includes("ball") && this.isMenuOpen)
+      ) {
+        return;
+      } else {
         this.openMenu();
       }
     });
-  }
+  },
+  watch: {
+    isMenuOpen: function(newVal) {
+      EventBus.$emit("MenuState", newVal);
+    },
+  },
+  beforeDestroy() {
+    if (typeof window !== "undefined") {
+      window.removeEventListener("resize", this.onResize, { passive: true });
+    }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/style/_variables";
+@import "@/style/_util";
 
 header {
-  z-index: 1;
+  z-index: 2;
   font-size: 14px;
   height: 75px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
   position: sticky;
   top: 0;
 }
 
 .logo {
-  height: 65%;
   display: flex;
   align-items: center;
+  justify-content: center;
   img {
-    height: 100%;
-    width: 100%;
+    margin: 0 0.5rem;
+  }
+}
+
+.logo-text {
+  height: 30px;
+  @media screen and (max-width: $small-break) {
+    height: 24px;
   }
 }
 
@@ -95,32 +111,17 @@ header {
   z-index: 2;
   height: 100%;
   display: flex;
-  width: 80%;
+  width: 65%;
   margin: 0.2rem auto;
   align-items: center;
   justify-content: space-between;
   position: relative;
-}
-
-.navigation-web {
   @media screen and (max-width: $small-break) {
-    display: none;
-  }
-  a {
-    color: rgba(0, 0, 0, 0.5);
-    border: 2px solid transparent;
-    text-decoration: none;
-    text-transform: uppercase;
-    margin: 0 1rem;
-    padding: 0.3rem 0.8rem;
-    &:hover {
-      color: black;
-    }
+    width: 90%;
   }
 }
 
 .navigation-mobile {
-  transform: scale(1.3);
   cursor: pointer;
   display: none;
   @media screen and (max-width: $small-break) {
@@ -129,43 +130,32 @@ header {
 }
 
 .router-link-exact-active {
-  color: black !important;
-  border: 2px solid black !important;
-  padding: 0.3rem 0.8rem;
   @media screen and(max-width:$small-break) {
-    color: white !important;
-    border: none;
-    border-bottom: 2px solid white !important;
+    border: 2px solid black !important;
+    background-color: $white;
+    padding: 0 0.4rem;
+    color: black !important ;
   }
 }
 
-// .btn {
-//   padding: 0.5rem 0.8rem;
-//   text-transform: uppercase;
-//   border: none;
-//   cursor: pointer;
-//   &:hover {
-//     border-bottom: 2px solid black;
-//     font-weight: bold;
-//   }
-// }
+.logo-routerlink {
+  border: none !important;
+  background-color: transparent;
+  padding: 0;
+}
 
-.dropdown-menu {
+.test {
   z-index: 1;
   position: absolute;
-  top: 10%;
-  display: flex;
-  flex-direction: column;
+  bottom: -100px;
+  background-color: $primary;
+  width: 100%;
+  height: 120px;
+  display: none;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  background: black;
-  width: 100%;
-  a {
-    color: white;
-    text-decoration: none;
-    text-transform: uppercase;
-    margin: 0.8rem 0;
+  @media screen and(max-width:$small-break) {
+    display: flex;
   }
 }
 

@@ -7,8 +7,8 @@ import ImageGallery from "@/components/ImageGallery";
 
 export default {
   components: {
-    ImageGallery,
-  },
+    ImageGallery
+  }
 };
 </script>
 

@@ -1,25 +1,51 @@
 <template>
-  <div id="app">
-    <NavBar />
-    <router-view class="main" :key="$route.fullPath" />
-    <Footer />
+  <div>
+    <div id="app">
+      <NavBar />
+      <router-view class="main" :key="$route.fullPath" />
+      <Footer />
+      <transition name="fade">
+        <Modal v-if="isModalOpen">
+          <h2>koszipuszi</h2>
+        </Modal>
+      </transition>
+    </div>
   </div>
 </template>
 
 <script>
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
+import Modal from "@/components/Modal";
+import { EventBus } from "@/plugins/EventBus";
 export default {
+  data() {
+    return {
+      isModalOpen: false,
+    };
+  },
   components: {
     NavBar,
     Footer,
+    Modal,
+  },
+  created() {
+    EventBus.$on("closeModal", (state) => {
+      this.isModalOpen = state;
+    });
+
+    const locale = localStorage.getItem("locale");
+
+    if (locale) {
+      this.$i18n.locale = locale;
+    }
   },
 };
 </script>
 
 <style lang="scss">
-@import "@/style/_variables";
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap");
+@import "@/style/_util";
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap");
 
 * {
   padding: 0;
@@ -31,17 +57,15 @@ body {
   background-color: $primary;
 }
 
-.main {
-  padding-bottom: 220px;
-}
-
 #app {
-  font-family: "Open Sans", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Rubik", sans-serif;
   text-align: center;
-  color: #2c3e50;
-  position: relative;
+  font-size: 20px;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  @media screen and (max-width: $small-break) {
+    font-size: 16px;
+  }
 }
 </style>

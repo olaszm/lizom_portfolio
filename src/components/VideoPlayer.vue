@@ -1,14 +1,12 @@
 <template>
-  <div class="wrapper">
-    <div class="showreel" v-show="!isMenuOpen">
-      <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/6XxSurPikKE"
-        allowfullscreen
-        frameborder="0"
-      ></iframe>
-    </div>
+  <div class="showreel">
+    <iframe
+      width="560"
+      height="315"
+      src="https://player.vimeo.com/video/441807983"
+      allowfullscreen
+      frameborder="0"
+    ></iframe>
   </div>
 </template>
 
@@ -17,28 +15,20 @@ import { EventBus } from "@/plugins/eventbus";
 export default {
   data() {
     return {
-      isMenuOpen: false
+      isMenuOpen: false,
     };
   },
 
   created() {
-    EventBus.$on("MenuState", state => {
+    EventBus.$on("MenuState", (state) => {
       this.isMenuOpen = state;
     });
-  }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/style/_variables";
-
-.wrapper {
-  width: 85%;
-  margin: 0 auto;
-  @media screen and (max-width: $small-break) {
-    width: 90%;
-  }
-}
+@import "@/style/_util";
 
 .showreel {
   position: relative;
@@ -49,11 +39,11 @@ export default {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 80%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
     transform: translate(-50%, -50%);
+    z-index: 1;
     @media screen and (max-width: $small-break) {
-      margin-top: 3rem;
       width: 100%;
       height: 100%;
     }

@@ -1,71 +1,120 @@
 <template>
   <div class="main">
-    <h3>Contact Me</h3>
+    <h3>{{ $t("page_titles.contact_me") }}</h3>
     <div class="wrapper">
-      <form action>
-        <label for="name">Name</label>
-        <input type="text" v-model="name" />
-        <label for="Email">Email</label>
-        <input type="email" v-model="email" />
-        <label for="Subject">Subject</label>
+      <form action @submit.prevent="sendForm">
+        <label for="name">{{ $t("contact.name") }}</label>
+        <input type="text" v-model="name" required />
+        <label for="Email">{{ $t("contact.email") }}</label>
+        <input type="email" v-model="email" required />
+        <label for="Subject">{{ $t("contact.subject") }}</label>
         <input type="text" v-model="subject" />
-        <label for="Message">Message</label>
-        <textarea name="message" id rows="5"></textarea>
+        <label for="Message">{{ $t("contact.message") }}</label>
+        <textarea
+          required
+          name="message"
+          v-model="message"
+          rows="10"
+        ></textarea>
+        <div class="submit-btn-container">
+          <input
+            type="submit"
+            :value="$t('contact.submit')"
+            class="submit-btn"
+          />
+        </div>
       </form>
 
       <div class="gif-container">
-        <img src="https://i.giphy.com/media/kI3xXDgyaNQubMfPuC/giphy.webp" alt />
+        <img
+          src="https://i.giphy.com/media/kI3xXDgyaNQubMfPuC/giphy.webp"
+          alt
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { EventBus } from "@/plugins/EventBus";
 export default {
+  components: {},
   data() {
     return {
       name: "",
-      email: ""
+      email: "",
+      subject: "",
+      message: "",
     };
-  }
+  },
+
+  methods: {
+    sendForm() {
+      if (this.email != "" && this.message != "") {
+        const msg = {
+          name: this.name,
+          email: this.email,
+          subject: this.subject,
+          message: this.message,
+        };
+
+        fetch("/api", {
+          method: "post",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            msg,
+          }),
+        })
+          .then(() => {})
+          .catch(function(error) {
+            console.log(error);
+          });
+
+        EventBus.$emit("closeModal", (state) => {
+          this.isModalOpen = state;
+        });
+
+        this.name = "";
+        this.email = "";
+        this.message = "";
+        this.subject = "";
+      }
+    },
+  },
+  created() {
+    EventBus.$on("closeModal", (state) => {
+      this.isModalOpen = state;
+    });
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/style/_variables";
-
-.main {
-  text-align: left;
-  width: 75%;
-  margin: 0rem auto;
-  h3 {
-    margin: 1rem 0;
-  }
-  @media screen and (max-width: $small-break) {
-    margin-top: 2rem;
-    width: 90%;
-  }
-}
+@import "@/style/_util";
 
 .wrapper {
   height: 100%;
-  width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-
   @media screen and (max-width: $small-break) {
+    flex-direction: column;
+  }
+  @media screen and (max-width: $medium-break) {
     flex-direction: column;
   }
 }
 
 form {
-  background-color: #eeeeee;
-  font-size: 20px;
-  border: 5px solid black;
+  background-color: $white;
+  font-size: 16px;
   text-align: left;
   width: 100%;
   max-width: 550px;
+  min-width: 280px;
   display: flex;
   padding: 1rem;
   flex-direction: column;
@@ -73,39 +122,70 @@ form {
   label {
     margin: 1rem 0;
   }
-  input {
-    font-family: "Open Sans", sans-serif;
+  input[type="text"],
+  input[type="email"] {
+    font-family: "Rubik", sans-serif;
+    outline: none;
     height: 40px;
-    font-size: 16px;
-    background-color: #c4c4c4;
-    border: none;
+    background-color: $white;
+    border: 1px solid black;
+    padding: 0 0.4rem;
+    transition: all 100ms ease;
     &:focus {
-      border: 5px solid black;
+      border: 3px solid black;
     }
   }
   textarea {
-    font-family: "Open Sans", sans-serif;
-    font-size: 16px;
-    background-color: #c4c4c4;
+    font-family: "Rubik", sans-serif;
+    box-sizing: border-box;
+    outline: none;
+    border: 1px solid black;
+    background-color: $white;
     resize: none;
+    padding: 0.1rem 0.4rem;
+    transition: all 100ms ease;
     &:focus {
-      border: 5px solid black;
+      border: 3px solid black;
     }
   }
 }
 
+.submit-btn-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submit-btn {
+  width: 40%;
+  height: 50px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  background-color: $primary;
+  color: black;
+  margin: 1rem 0;
+  &:hover {
+    background-color: $white;
+    border: 3px solid black;
+  }
+}
+
 .gif-container {
+  margin: 0 3rem;
   img {
     border-radius: 50%;
-    width: 400px;
-    height: 400px;
+    width: 350px;
+    height: 350px;
     object-fit: cover;
 
     @media screen and (max-width: $small-break) {
-      width: 150px;
-      height: 150px;
-      margin: 1.2rem;
+      display: none;
     }
+  }
+  @media screen and (max-width: $medium-break) {
+    margin: 1rem auto;
   }
 }
 </style>
