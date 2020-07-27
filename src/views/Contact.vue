@@ -68,7 +68,7 @@ export default {
           message: this.message,
         };
 
-        fetch("http://localhost:3010/api", {
+        fetch("/api", {
           method: "post",
           headers: {
             Accept: "application/json",
