@@ -4,9 +4,7 @@
       <router-link class="btn" to="/">{{ $t("menu.work") }}</router-link>
       <router-link class="btn" to="/about">{{ $t("menu.about") }}</router-link>
       <router-link class="btn" to="/contact">
-        {{
-        $t("menu.contact")
-        }}
+        {{ $t("menu.contact") }}
       </router-link>
     </div>
     <SwitchLocale />
@@ -51,11 +49,11 @@ export default {
     text-decoration: none;
     text-transform: uppercase;
     font-weight: 300;
-    display: inline-flex;
+    display: block;
     align-items: center;
     justify-content: center;
-    min-height: 35px;
-    line-height: 35px;
+    min-height: 30px;
+    line-height: 2;
     min-width: 8ch;
     padding: 0 0.75em;
     &:hover {

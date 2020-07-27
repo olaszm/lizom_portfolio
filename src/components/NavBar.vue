@@ -13,7 +13,6 @@
 
       <div class="navigation-mobile" @click.stop="openMenu">
         <HamburgerIcon />
-        <LottieTest />
       </div>
     </div>
 
@@ -28,13 +27,11 @@
 <script>
 import NavigationLinks from "@/components/NavigationLinks";
 import HamburgerIcon from "@/components/HamburgerIcon";
-import LottieTest from "@/components/LottieTest";
 import { EventBus } from "@/plugins/EventBus";
 export default {
   components: {
     NavigationLinks,
     HamburgerIcon,
-    LottieTest,
   },
   data() {
     return {
@@ -54,7 +51,14 @@ export default {
     this.onResize();
     window.addEventListener("resize", this.onResize, { passive: true });
     window.addEventListener("click", (e) => {
-      if (!e.target.className.includes("dropdown-menu") && this.isMenuOpen) {
+      console.log(e.target);
+      if (
+        (e.target.className.includes("switch-text") && this.isMenuOpen) ||
+        (e.target.className.includes("label") && this.isMenuOpen) ||
+        (e.target.className.includes("ball") && this.isMenuOpen)
+      ) {
+        return;
+      } else {
         this.openMenu();
       }
     });
@@ -88,14 +92,10 @@ header {
 }
 
 .logo {
-  // height: 65%;
   display: flex;
   align-items: center;
   justify-content: center;
   img {
-    // height: 100%;
-    // height: auto;
-    // width: 100%;
     margin: 0 0.5rem;
   }
 }
@@ -122,7 +122,6 @@ header {
 }
 
 .navigation-mobile {
-  // transform: scale(1.3);
   cursor: pointer;
   display: none;
   @media screen and (max-width: $small-break) {
@@ -155,21 +154,6 @@ header {
   display: none;
   align-items: center;
   justify-content: center;
-  // a {
-  //   color: rgba(0, 0, 0, 0.5);
-  //   border: 2px solid transparent;
-  //   text-decoration: none;
-  //   text-transform: uppercase;
-  //   display: flex;
-  //   align-items: center;
-  //   justify-content: center;
-  //   height: 2rem;
-  //   margin: 0 0.3rem;
-  //   &:hover {
-  //     color: black;
-  //   }
-  // }
-
   @media screen and(max-width:$small-break) {
     display: flex;
   }

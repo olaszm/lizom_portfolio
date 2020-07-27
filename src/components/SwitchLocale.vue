@@ -1,19 +1,15 @@
 <template>
-  <!-- <ul>
-    <li
-      v-for="(item, index) in locales"
-      :key="index"
-      @click="switchLocale(item)"
-    >
-      {{ item }}
-    </li>
-  </ul>-->
-
   <div class="cont">
-    <input type="checkbox" class="checkbox" v-model="isChecked" id="chk" @click.stop="switchLocale" />
+    <input
+      type="checkbox"
+      class="checkbox"
+      v-model="isChecked"
+      id="chk"
+      @click.stop="switchLocale"
+    />
     <label class="label" for="chk">
-      <p>en</p>
-      <p>hu</p>
+      <p class="switch-text">en</p>
+      <p class="switch-text">hu</p>
       <div class="ball"></div>
     </label>
   </div>
@@ -41,7 +37,9 @@ export default {
   created() {
     const locale = localStorage.getItem("locale");
 
-    locale == "en" ? (this.isChecked = false) : (this.isChecked = true);
+    locale == "en" || !locale
+      ? (this.isChecked = false)
+      : (this.isChecked = true);
   },
 };
 </script>

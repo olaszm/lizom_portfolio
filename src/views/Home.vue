@@ -10,10 +10,9 @@
 <script>
 // @ is an alias to /src
 import VideoPlayer from "@/components/VideoPlayer";
-// import ImageGallery from "@/components/ImageGallery";
 export default {
   name: "Home",
-  components: { VideoPlayer }
+  components: { VideoPlayer },
 };
 </script>
 

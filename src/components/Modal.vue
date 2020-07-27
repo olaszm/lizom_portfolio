@@ -23,8 +23,7 @@ export default {
 };
 </script>
 
-
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 @import "@/style/_util";
 
 .wrap {
@@ -73,7 +72,6 @@ export default {
   transition: all 0.3s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  //   transform: translateY(-40%);
   pointer-events: all;
   opacity: 0;
 }

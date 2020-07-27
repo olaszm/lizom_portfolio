@@ -1,5 +1,5 @@
 <template>
-  <div class="container" @click="myFunction" ref="cont">
+  <div class="container" @click="animateHamburger" ref="cont">
     <div class="bar1"></div>
     <div class="bar2"></div>
     <div class="bar3"></div>
@@ -12,24 +12,24 @@ import { EventBus } from "@/plugins/EventBus";
 export default {
   data() {
     return {
-      isMenuOpen: false
+      isMenuOpen: false,
     };
   },
   methods: {
-    myFunction() {
+    animateHamburger() {
       if (this.isMenuOpen) {
         this.$refs.cont.classList.add("change");
       } else {
         this.$refs.cont.classList.remove("change");
       }
-    }
+    },
   },
   created() {
-    EventBus.$on("MenuState", state => {
+    EventBus.$on("MenuState", (state) => {
       this.isMenuOpen = state;
-      this.myFunction();
+      this.animateHamburger();
     });
-  }
+  },
 };
 </script>
 

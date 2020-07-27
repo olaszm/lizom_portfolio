@@ -32,29 +32,19 @@
         />
       </div>
     </div>
-
-    <!-- <transition name="fade">
-      <Modal v-if="isModalOpen">
-        <h2>koszipuszi</h2>
-      </Modal>
-    </transition>-->
   </div>
 </template>
 
 <script>
-// import Modal from "@/components/Modal";
 import { EventBus } from "@/plugins/EventBus";
 export default {
-  components: {
-    // Modal
-  },
+  components: {},
   data() {
     return {
       name: "",
       email: "",
       subject: "",
       message: "",
-      // isModalOpen: false,
     };
   },
 
@@ -92,7 +82,6 @@ export default {
         this.message = "";
         this.subject = "";
       }
-      // this.isModalOpen = true;
     },
   },
   created() {
