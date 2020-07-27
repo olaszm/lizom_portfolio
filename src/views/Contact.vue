@@ -44,8 +44,7 @@
 <script>
 // import Modal from "@/components/Modal";
 import { EventBus } from "@/plugins/EventBus";
-import sendgrid from "@sendgrid/mail";
-
+import { sendEmail } from "@/plugins/sendGrid";
 export default {
   components: {
     // Modal
@@ -63,33 +62,23 @@ export default {
   methods: {
     sendForm() {
       if (this.email != "" && this.message != "") {
-        this.sendEmail();
+        sendEmail(
+          "martin1olasz@gmail.com",
+          this.email,
+          this.subject,
+          this.message
+        );
         EventBus.$emit("closeModal", (state) => {
           this.isModalOpen = state;
         });
       }
       // this.isModalOpen = true;
     },
-
-    sendEmail() {
-      const msg = {
-        to: "martin1olasz@gmail.com",
-        from: this.email,
-        subject: this.subject,
-        text: this.message,
-      };
-      sendgrid
-        .send(msg)
-        .then()
-        .catch((err) => console.log(err));
-    },
   },
   created() {
     EventBus.$on("closeModal", (state) => {
       this.isModalOpen = state;
     });
-
-    sendgrid.setApiKey(process.env.VUE_APP_SENDGRID);
   },
 };
 </script>
