@@ -2,7 +2,7 @@
   <div class="main">
     <div class="wrapper">
       <div class="photo">
-        <img src="@/assets/portrait.png" alt />
+        <img src="@/assets/portrait.png" alt="portrait" />
       </div>
       <div class="about-side">
         <h3>{{ $t("page_titles.about_me") }}</h3>

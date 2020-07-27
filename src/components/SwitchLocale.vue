@@ -1,13 +1,13 @@
 <template>
   <div class="cont">
     <input
+      name="checkbox"
       type="checkbox"
       class="checkbox"
       v-model="isChecked"
-      id="chk"
       @click.stop="switchLocale"
     />
-    <label class="label" for="chk">
+    <label class="label" for="checkbox">
       <p class="switch-text">en</p>
       <p class="switch-text">hu</p>
       <div class="ball"></div>

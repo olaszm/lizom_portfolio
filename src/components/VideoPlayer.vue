@@ -1,6 +1,7 @@
 <template>
   <div class="showreel">
     <iframe
+      title="Showreel"
       width="560"
       height="315"
       src="https://player.vimeo.com/video/441807983"
