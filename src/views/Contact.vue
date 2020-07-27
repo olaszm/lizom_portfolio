@@ -44,7 +44,6 @@
 <script>
 // import Modal from "@/components/Modal";
 import { EventBus } from "@/plugins/EventBus";
-import { sendEmail } from "@/plugins/sendGrid";
 export default {
   components: {
     // Modal
@@ -62,15 +61,36 @@ export default {
   methods: {
     sendForm() {
       if (this.email != "" && this.message != "") {
-        sendEmail(
-          "martin1olasz@gmail.com",
-          this.email,
-          this.subject,
-          this.message
-        );
+        const msg = {
+          name: this.name,
+          email: this.email,
+          subject: this.subject,
+          message: this.message,
+        };
+
+        fetch("http://localhost:3010/api", {
+          method: "post",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            msg,
+          }),
+        })
+          .then(() => {})
+          .catch(function(error) {
+            console.log(error);
+          });
+
         EventBus.$emit("closeModal", (state) => {
           this.isModalOpen = state;
         });
+
+        this.name = "";
+        this.email = "";
+        this.message = "";
+        this.subject = "";
       }
       // this.isModalOpen = true;
     },
