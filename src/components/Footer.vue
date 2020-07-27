@@ -22,19 +22,24 @@
             <i class="fab fa-linkedin"></i>
           </div>
         </a>
-        <a href="https://www.behance.net/davidlizom" title="Behance" rel="noopener" target="_blank">
+        <a
+          href="https://www.behance.net/davidlizom"
+          title="Behance"
+          rel="noopener"
+          target="_blank"
+        >
           <div class="social-btn">
             <i class="fab fa-behance"></i>
           </div>
         </a>
       </div>
-      <p class="phone-number">Tel.: +36 30 380 0343</p>
+      <p class="phone-number">{{ $t("footer.phone") }}</p>
     </div>
 
     <div class="footer-logo">
       <img src="@/assets/logotype.svg" alt />
       <div class="copy">
-        <p>&copy; Copyright 2020. All rights reserved.</p>
+        <p>{{ $t("footer.copyrights") }}</p>
       </div>
     </div>
   </footer>
@@ -66,12 +71,8 @@ footer {
   width: 100%;
   height: 300px;
 
-  // //   Test
-  // position: absolute;
-  // bottom: 0;
-  // height: 220px;
   @media screen and (max-width: $small-break) {
-    height: 150px;
+    height: 180px;
   }
 }
 
@@ -88,6 +89,7 @@ footer {
   @media screen and (max-width: $small-break) {
     font-size: 12px;
     margin: 0.2rem 0;
+    margin-bottom: 1.5rem;
   }
 }
 

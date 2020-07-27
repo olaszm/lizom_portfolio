@@ -1,23 +1,35 @@
 <template>
   <div class="main">
-    <h3>Contact Me</h3>
+    <h3>{{ $t("page_titles.contact_me") }}</h3>
     <div class="wrapper">
       <form action @submit.prevent="sendForm">
-        <label for="name">Name</label>
-        <input type="text" v-model="name" />
-        <label for="Email">Email</label>
-        <input type="email" v-model="email" />
-        <label for="Subject">Subject</label>
+        <label for="name">{{ $t("contact.name") }}</label>
+        <input type="text" v-model="name" required />
+        <label for="Email">{{ $t("contact.email") }}</label>
+        <input type="email" v-model="email" required />
+        <label for="Subject">{{ $t("contact.subject") }}</label>
         <input type="text" v-model="subject" />
-        <label for="Message">Message</label>
-        <textarea name="message" v-model="message" rows="10"></textarea>
+        <label for="Message">{{ $t("contact.message") }}</label>
+        <textarea
+          required
+          name="message"
+          v-model="message"
+          rows="10"
+        ></textarea>
         <div class="submit-btn-container">
-          <input type="submit" value="Submit" class="submit-btn" />
+          <input
+            type="submit"
+            :value="$t('contact.submit')"
+            class="submit-btn"
+          />
         </div>
       </form>
 
       <div class="gif-container">
-        <img src="https://i.giphy.com/media/kI3xXDgyaNQubMfPuC/giphy.webp" alt />
+        <img
+          src="https://i.giphy.com/media/kI3xXDgyaNQubMfPuC/giphy.webp"
+          alt
+        />
       </div>
     </div>
 
@@ -32,6 +44,7 @@
 <script>
 // import Modal from "@/components/Modal";
 import { EventBus } from "@/plugins/EventBus";
+import sendgrid from "@sendgrid/mail";
 
 export default {
   components: {
@@ -49,24 +62,34 @@ export default {
 
   methods: {
     sendForm() {
-      const msg = {
-        name: this.name,
-        email: this.email,
-        subject: this.subject,
-        message: this.message,
-      };
-
-      console.log(msg);
+      if (this.email != "" && this.message != "") {
+        this.sendEmail();
+        EventBus.$emit("closeModal", (state) => {
+          this.isModalOpen = state;
+        });
+      }
       // this.isModalOpen = true;
-      EventBus.$emit("closeModal", (state) => {
-        this.isModalOpen = state;
-      });
+    },
+
+    sendEmail() {
+      const msg = {
+        to: "martin1olasz@gmail.com",
+        from: this.email,
+        subject: this.subject,
+        text: this.message,
+      };
+      sendgrid
+        .send(msg)
+        .then()
+        .catch((err) => console.log(err));
     },
   },
   created() {
     EventBus.$on("closeModal", (state) => {
       this.isModalOpen = state;
     });
+
+    sendgrid.setApiKey(process.env.VUE_APP_SENDGRID);
   },
 };
 </script>

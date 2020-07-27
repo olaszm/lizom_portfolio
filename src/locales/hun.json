@@ -1,0 +1,33 @@
+{
+  "menu": {
+    "contact": "Kapcsolat",
+    "about": "Rolam",
+    "work": "Munkaim"
+  },
+  "page_titles": {
+    "about_me": "Rolam",
+    "contact_me": "Kapcsolat",
+    "work": "Showreel"
+  },
+  "about": {
+    "p1": "Hello! David vagyok.",
+    "p2": "I am a Hungarian illustrator and motion designer living in Pecs",
+    "p3": "Szeretek jatekos kepeket es animaciokat kesziteni mind digitalis es tradicionalis eszkozokkel. Minden tolem telhetot megteszek azert, hogy eletre hozzam az emberek otletet.",
+    "p4": "A muveszet melett a masik ket fo erdeklodesem a gordeszkazas es a zene, kiraly lenne ha tudnam hogy kell copyrightolni dadadad",
+    "p5": "Freelance munkara is szabad vagyok szoval nyugodtan vedd fel velem a kapcsolatot ha van egy jo otleted:) "
+  },
+  "contact": {
+    "name": "Nev",
+    "email": "Email",
+    "subject": "Targy",
+    "message": "Uzenet",
+    "submit": "Kuldes"
+  },
+  "footer": {
+    "phone": "Tel.: +36 30 380 0343",
+    "copyrights": "© Copyright 2020. Minden jog fent tartva."
+  },
+  "main": {
+    "message": "BOOYAKASHAA"
+  }
+}

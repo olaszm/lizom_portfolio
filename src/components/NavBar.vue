@@ -9,21 +9,17 @@
         </div>
       </router-link>
 
-      <NavigationLinks />
+      <NavigationLinks v-if="!isMobile" />
 
       <div class="navigation-mobile" @click.stop="openMenu">
         <HamburgerIcon />
+        <LottieTest />
       </div>
     </div>
 
     <transition name="fade" mode="out-in">
-      <div class="test" v-if="isMenuOpen">
-        <router-link
-          v-for="(link, index) in navLinks"
-          :key="index"
-          :to="link.slug"
-          >{{ link.title }}</router-link
-        >
+      <div class="test" v-show="isMenuOpen">
+        <NavigationLinks />
       </div>
     </transition>
   </header>
@@ -32,19 +28,17 @@
 <script>
 import NavigationLinks from "@/components/NavigationLinks";
 import HamburgerIcon from "@/components/HamburgerIcon";
+import LottieTest from "@/components/LottieTest";
 import { EventBus } from "@/plugins/EventBus";
 export default {
   components: {
     NavigationLinks,
     HamburgerIcon,
+    LottieTest,
   },
   data() {
     return {
-      navLinks: [
-        { slug: "/", title: "work" },
-        { slug: "/about", title: "about" },
-        { slug: "/contact", title: "contact" },
-      ],
+      isMobile: false,
       isMenuOpen: false,
     };
   },
@@ -52,8 +46,13 @@ export default {
     openMenu() {
       this.isMenuOpen = !this.isMenuOpen;
     },
+    onResize() {
+      this.isMobile = window.innerWidth < 600;
+    },
   },
   mounted() {
+    this.onResize();
+    window.addEventListener("resize", this.onResize, { passive: true });
     window.addEventListener("click", (e) => {
       if (!e.target.className.includes("dropdown-menu") && this.isMenuOpen) {
         this.openMenu();
@@ -64,6 +63,11 @@ export default {
     isMenuOpen: function(newVal) {
       EventBus.$emit("MenuState", newVal);
     },
+  },
+  beforeDestroy() {
+    if (typeof window !== "undefined") {
+      window.removeEventListener("resize", this.onResize, { passive: true });
+    }
   },
 };
 </script>
@@ -144,49 +148,30 @@ header {
 .test {
   z-index: 1;
   position: absolute;
-  bottom: -90%;
+  bottom: -100px;
   background-color: $primary;
   width: 100%;
-  height: 100%;
+  height: 120px;
   display: none;
   align-items: center;
   justify-content: center;
-  a {
-    color: rgba(0, 0, 0, 0.5);
-    border: 2px solid transparent;
-    text-decoration: none;
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 2rem;
-    margin: 0 0.3rem;
-    &:hover {
-      color: black;
-    }
-  }
+  // a {
+  //   color: rgba(0, 0, 0, 0.5);
+  //   border: 2px solid transparent;
+  //   text-decoration: none;
+  //   text-transform: uppercase;
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   height: 2rem;
+  //   margin: 0 0.3rem;
+  //   &:hover {
+  //     color: black;
+  //   }
+  // }
 
   @media screen and(max-width:$small-break) {
     display: flex;
-  }
-}
-
-.dropdown-menu {
-  position: absolute;
-  bottom: 0;
-  font-size: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background: black;
-  width: 100%;
-  a {
-    color: white;
-    text-decoration: none;
-    text-transform: uppercase;
-    margin: 0.8rem 0;
   }
 }
 

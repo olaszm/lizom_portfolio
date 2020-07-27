@@ -33,6 +33,12 @@ export default {
     EventBus.$on("closeModal", (state) => {
       this.isModalOpen = state;
     });
+
+    const locale = localStorage.getItem("locale");
+
+    if (locale) {
+      this.$i18n.locale = locale;
+    }
   },
 };
 </script>

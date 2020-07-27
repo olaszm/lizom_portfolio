@@ -5,23 +5,18 @@
         <img src="@/assets/portrait.png" alt />
       </div>
       <div class="about-side">
-        <h3>About me</h3>
-        <p>Hello! My name is David.</p>
-        <p>I am a hungarian illustrator and motion designer living in Pecs</p>
+        <h3>{{ $t("page_titles.about_me") }}</h3>
+        <p>{{ $t("about.p1") }}</p>
+        <p>{{ $t("about.p2") }}</p>
 
         <p>
-          I like to create playful images and animations with the use of both
-          digital and traditional tools. I love bringing people's ideas to life
-          and my goal is to concieve them as best as I possibly can.
+          {{ $t("about.p3") }}
         </p>
         <p>
-          Aside from art, my two main interests are skateboarding and music and
-          I would love to get an opportunity to work on anything related to
-          them.
+          {{ $t("about.p4") }}
         </p>
         <p>
-          I am available for freelance work so feel free to contact me with any
-          idea. :)
+          {{ $t("about.p5") }}
         </p>
       </div>
     </div>
