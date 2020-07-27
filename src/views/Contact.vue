@@ -2,7 +2,10 @@
   <div class="main">
     <h3>{{ $t("page_titles.contact_me") }}</h3>
     <div class="wrapper">
-      <form action @submit.prevent="sendForm">
+      <form action @submit.prevent="sendForm" novalidate>
+
+
+ 
         <label for="name">{{ $t("contact.name") }}</label>
         <input type="text" v-model="name" required />
         <label for="Email">{{ $t("contact.email") }}</label>
@@ -16,6 +19,15 @@
           v-model="message"
           rows="10"
         ></textarea>
+
+         <p class="error-container" v-if="errors.length">
+    <b>Please correct the following error(s):</b>
+    <ul>
+      <li v-for="(error,index) in errors" :key="index">{{ error }}</li>
+    </ul>
+  </p>
+
+
         <div class="submit-btn-container">
           <input
             type="submit"
@@ -23,6 +35,8 @@
             class="submit-btn"
           />
         </div>
+
+        
       </form>
 
       <div class="gif-container">
@@ -41,6 +55,7 @@ export default {
   components: {},
   data() {
     return {
+      errors: [],
       name: "",
       email: "",
       subject: "",
@@ -50,7 +65,19 @@ export default {
 
   methods: {
     sendForm() {
-      if (this.email != "" && this.message != "") {
+      this.errors = []
+      if(!this.name){
+        this.errors.push('Name required.')
+      }
+
+      if(!this.email){
+        this.errors.push('Email required.')
+      } else if(!this.validEmail(this.email)){
+        this.errors.push('Valid email required.')
+      }
+
+
+      if(!this.errors.length){
         const msg = {
           name: this.name,
           email: this.email,
@@ -58,21 +85,8 @@ export default {
           message: this.message,
         };
 
-        fetch("/api", {
-          method: "post",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            msg,
-          }),
-        })
-          .then(() => {})
-          .catch(function(error) {
-            console.log(error);
-          });
-
+        
+        this.sendEmail(msg)
         EventBus.$emit("closeModal", (state) => {
           this.isModalOpen = state;
         });
@@ -83,6 +97,26 @@ export default {
         this.subject = "";
       }
     },
+     validEmail: function (email) {
+      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    },
+    sendEmail(messageToSend){
+        fetch("/api", {
+          method: "post",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            messageToSend
+          }),
+        })
+          .then(() => {})
+          .catch(function(error) {
+            console.log(error);
+          });
+    }
   },
   created() {
     EventBus.$on("closeModal", (state) => {
@@ -169,6 +203,14 @@ form {
   &:hover {
     background-color: $white;
     border: 3px solid black;
+  }
+}
+
+.error-container {
+  margin: 1rem 0;
+  color : rgb(228, 101, 101);
+  li {
+    margin: 0 2rem;
   }
 }
 
