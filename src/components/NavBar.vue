@@ -61,7 +61,7 @@ export default {
         (e.target.className.includes("ball") && this.isMenuOpen)
       ) {
         return;
-      } else {
+      } else if (this.isMenuOpen) {
         this.openMenu();
       }
     });
