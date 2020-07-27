@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 3010;
 
 app.set("port", process.env.PORT || 3010);
 
-app.use(serveStatic(path.join(__dirname, "../dist")));
+app.use(serveStatic(path.join(__dirname, "/dist")));
 
 app.listen(PORT, function() {
   console.log("Node.js server is running on port " + PORT);
