@@ -73,6 +73,10 @@ export default {
         this.errors.push('Valid email required.')
       }
 
+       if(!this.message){
+        this.errors.push('Message required.')
+      } 
+
 
       if(!this.errors.length){
         const msg = {
@@ -172,6 +176,7 @@ form {
     border: 1px solid black;
     padding: 0 0.4rem;
     transition: all 100ms ease;
+    font-size: 16px;
     &:focus {
       border: 3px solid black;
     }
@@ -183,6 +188,7 @@ form {
     border: 1px solid black;
     background-color: $white;
     resize: none;
+    font-size: 16px;
     padding: 0.1rem 0.4rem;
     transition: all 100ms ease;
     &:focus {
@@ -207,6 +213,7 @@ form {
   background-color: $primary;
   color: black;
   margin: 1rem 0;
+  margin-bottom: 0;
   &:hover {
     background-color: $white;
     border: 3px solid black;
