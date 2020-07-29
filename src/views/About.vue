@@ -4,9 +4,16 @@
       <div class="photo">
         <img
           @mouseenter="triggerGif"
-          @mouseleave="triggerGif"
+          v-if="!isGifActive"
           class="gif-activate"
           src="@/assets/ld_portrait.jpg"
+          alt="portrait"
+        />
+        <img
+          v-if="isGifActive"
+          @mouseleave="triggerGif"
+          class="gif-activate"
+          src="@/assets/ld_portrait-hover.gif"
           alt="portrait"
         />
       </div>
@@ -31,12 +38,12 @@ export default {
     };
   },
   methods: {
-    triggerGif(el) {
+    triggerGif() {
       if (this.isGifActive) {
-        el.target.src = `${require("@/assets/ld_portrait.jpg")}`;
+        // el.target.src = `${require("@/assets/ld_portrait.jpg")}`;
         this.isGifActive = false;
       } else {
-        el.target.src = `${require("@/assets/ld_portrait-hover.gif")}`;
+        // el.target.src = `${require("@/assets/ld_portrait-hover.gif")}`;
         this.isGifActive = true;
       }
     },
