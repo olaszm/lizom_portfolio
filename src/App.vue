@@ -5,9 +5,7 @@
       <router-view class="main" :key="$route.fullPath" />
       <Footer />
       <transition name="fade">
-        <Modal v-if="isModalOpen">
-          <img src="@/assets/submit_thanks.gif" alt />
-        </Modal>
+        <Modal v-if="isModalOpen"></Modal>
       </transition>
     </div>
   </div>
@@ -21,7 +19,7 @@ import { EventBus } from "@/plugins/EventBus";
 export default {
   data() {
     return {
-      isModalOpen: false,
+      isModalOpen: true,
     };
   },
   components: {

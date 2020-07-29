@@ -4,7 +4,8 @@
       <button class="close-btn">
         <i class="fas fa-times"></i>
       </button>
-      <slot></slot>
+      <img v-if="isEng" src="@/assets/submit_thanks.gif" alt />
+      <img v-else src="@/assets/submit_thanks-hun.gif" alt />
     </div>
   </div>
 </template>
@@ -12,9 +13,13 @@
 <script>
 import { EventBus } from "@/plugins/EventBus";
 export default {
+  computed: {
+    isEng() {
+      return this.$i18n.locale == "en" ? true : false;
+    },
+  },
   methods: {
     closeModal(e) {
-      console.log(e.target);
       if (
         e.target.className.includes("wrap") ||
         e.target.className.includes("close-btn") ||
@@ -37,7 +42,7 @@ export default {
   left: 0;
   height: 200%;
   width: 100%;
-  background-color: rgba($color: #000000, $alpha: 0.5);
+  background-color: rgba($color: #000000, $alpha: 0.25);
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -48,17 +53,18 @@ export default {
   color: $white;
   box-shadow: 0 0 20px black;
   background-color: $primary;
-  min-height: 350px;
-  width: 30%;
-  min-width: 290px;
   margin-top: 10%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
   position: relative;
+  place-items: center;
+  img {
+    padding: 2rem;
+    height: auto;
+    width: 100%;
+  }
   @media screen and (max-width: $small-break) {
     margin-top: 30%;
-    width: 90%;
+    width: 80%;
   }
 }
 

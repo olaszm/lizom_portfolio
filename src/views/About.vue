@@ -1,10 +1,14 @@
 <template>
   <div class="main">
+    <h3 class="title">{{ $t("page_titles.about_me") }}</h3>
     <div class="wrapper">
       <div class="photo">
         <video
           src="@/assets/ld_portrait.mp4"
           muted
+          type="video/mp4"
+          width="400"
+          height="300"
           @mouseenter="triggerGif"
           @mouseleave="triggerGif"
         ></video>
@@ -48,6 +52,13 @@ export default {
 <style lang="scss" scoped>
 @import "@/style/_util";
 
+.title {
+  display: none;
+  @media screen and (max-width: $small-break) {
+    display: block;
+  }
+}
+
 .wrapper {
   display: grid;
   grid-template-columns: minmax(250px, 1fr) minmax(300px, 1fr);
@@ -67,6 +78,9 @@ export default {
   }
   @media screen and (max-width: $small-break) {
     min-width: 180px;
+    h3 {
+      display: none;
+    }
   }
 }
 

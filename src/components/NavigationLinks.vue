@@ -43,6 +43,7 @@ export default {
     margin-left: 1rem;
   }
   a {
+    font-family: inherit;
     color: black;
     opacity: 0.6;
     text-decoration: none;

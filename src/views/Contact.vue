@@ -32,8 +32,12 @@
         </div>
       </form>
       <div v-if="isFormSubmited" class="gif-container">
-        <img
+        <img v-if="isEng"
           src="@/assets/submit_thanks.gif"
+          alt
+        />
+        <img v-else
+          src="@/assets/submit_thanks-hun.gif"
           alt
         />
       </div>
@@ -124,6 +128,10 @@ export default {
           });
     }
   },
+    computed: {
+    isEng() {
+      return this.$i18n.locale == "en" ? true : false;
+    },},
   mounted() {
       this.onResize();
     window.addEventListener("resize", this.onResize, { passive: true });
@@ -148,8 +156,9 @@ export default {
   grid-template-columns: minmax(300px, 1fr) minmax(350px, 1fr);
   gap: 6rem;
   align-items: center;
-  @media screen and (max-width: $medium-break) {
+  @media screen and (max-width: $small-break) {
    grid-template-columns: 1fr;
+   place-items: center;
   }
 }
 
@@ -169,6 +178,9 @@ form {
   }
   input[type="text"],
   input[type="email"] {
+    -webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
     font-family: "Rubik", sans-serif;
     outline: none;
     height: 40px;
@@ -182,6 +194,9 @@ form {
     }
   }
   textarea {
+    -webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
     font-family: "Rubik", sans-serif;
     box-sizing: border-box;
     outline: none;
@@ -203,6 +218,7 @@ form {
 }
 
 .submit-btn {
+  font-family: inherit;
   width: 40%;
   height: 50px;
   text-align: center;

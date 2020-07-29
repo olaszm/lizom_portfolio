@@ -22,12 +22,7 @@
             <i class="fab fa-linkedin"></i>
           </div>
         </a>
-        <a
-          href="https://www.behance.net/davidlizom"
-          title="Behance"
-          rel="noopener"
-          target="_blank"
-        >
+        <a href="https://www.behance.net/davidlizom" title="Behance" rel="noopener" target="_blank">
           <div class="social-btn">
             <i class="fab fa-behance"></i>
           </div>
@@ -37,7 +32,7 @@
     </div>
 
     <div class="footer-logo">
-      <img src="@/assets/logotype.svg" alt />
+      <img src="@/assets/ld_logotype-footer.gif" alt />
       <div class="copy">
         <p>{{ $t("footer.copyrights") }}</p>
       </div>
