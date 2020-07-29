@@ -2,9 +2,12 @@
   <div class="main">
     <div class="wrapper">
       <div class="photo">
-        <video muted @mouseenter="triggerGif" @mouseleave="triggerGif">
-          <source src="@/assets/ld_portrait.mp4" />
-        </video>
+        <video
+          src="@/assets/ld_portrait.mp4"
+          muted
+          @mouseenter="triggerGif"
+          @mouseleave="triggerGif"
+        ></video>
       </div>
       <div class="about-side">
         <h3>{{ $t("page_titles.about_me") }}</h3>
