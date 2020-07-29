@@ -3,9 +3,6 @@
     <h3>{{ $t("page_titles.contact_me") }}</h3>
     <div class="wrapper">
       <form action @submit.prevent="sendForm" novalidate>
-
-
- 
         <label for="name">{{ $t("contact.name") }}</label>
         <input type="text" v-model="name" required />
         <label for="Email">{{ $t("contact.email") }}</label>
@@ -26,8 +23,6 @@
       <li v-for="(error,index) in errors" :key="index">{{ error }}</li>
     </ul>
   </p>
-
-
         <div class="submit-btn-container">
           <input
             type="submit"
@@ -35,13 +30,10 @@
             class="submit-btn"
           />
         </div>
-
-        
       </form>
-
-      <div class="gif-container">
+      <div v-if="isFormSubmited" class="gif-container">
         <img
-          src="https://i.giphy.com/media/kI3xXDgyaNQubMfPuC/giphy.webp"
+          src="@/assets/submit_thanks.gif"
           alt
         />
       </div>
@@ -55,6 +47,8 @@ export default {
   components: {},
   data() {
     return {
+      isMobile : false,
+      isFormSubmited : false ,
       errors: [],
       name: "",
       email: "",
@@ -64,6 +58,9 @@ export default {
   },
 
   methods: {
+     onResize() {
+      this.isMobile = window.innerWidth < 780;
+    },
     sendForm() {
       this.errors = []
       if(!this.name){
@@ -84,12 +81,10 @@ export default {
           subject: this.subject,
           message: this.message,
         };
-
-        
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
         this.sendEmail(msg)
-        EventBus.$emit("closeModal", (state) => {
-          this.isModalOpen = state;
-        });
+      
 
         this.name = "";
         this.email = "";
@@ -112,16 +107,30 @@ export default {
             messageToSend
           }),
         })
-          .then(() => {})
+          .then(() => {
+            if(this.isMobile){
+              EventBus.$emit("closeModal", (state) => {
+              this.isModalOpen = state;
+              });
+            }
+            this.isFormSubmited = true
+          })
           .catch(function(error) {
             console.log(error);
           });
     }
   },
-  created() {
+  mounted() {
+      this.onResize();
+    window.addEventListener("resize", this.onResize, { passive: true });
     EventBus.$on("closeModal", (state) => {
       this.isModalOpen = state;
     });
+  },
+   beforeDestroy() {
+    if (typeof window !== "undefined") {
+      window.removeEventListener("resize", this.onResize, { passive: true });
+    }
   },
 };
 </script>
@@ -131,14 +140,12 @@ export default {
 
 .wrapper {
   height: 100%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  @media screen and (max-width: $small-break) {
-    flex-direction: column;
-  }
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr) minmax(350px, 1fr);
+  gap: 6rem;
+  align-items: center;
   @media screen and (max-width: $medium-break) {
-    flex-direction: column;
+   grid-template-columns: 1fr;
   }
 }
 
@@ -215,19 +222,16 @@ form {
 }
 
 .gif-container {
-  margin: 0 3rem;
+  max-height: 600px;  
   img {
-    border-radius: 50%;
-    width: 350px;
-    height: 350px;
-    object-fit: cover;
-
-    @media screen and (max-width: $small-break) {
-      display: none;
-    }
+    width: 100%;
+    // height: auto;
+    max-height: 600px;
+    object-fit: contain;
   }
-  @media screen and (max-width: $medium-break) {
-    margin: 1rem auto;
+  @media screen and (max-width: $small-break) {
+    // margin: 1rem auto;
+    display: none;
   }
 }
 </style>

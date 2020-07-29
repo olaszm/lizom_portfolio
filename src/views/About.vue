@@ -2,51 +2,61 @@
   <div class="main">
     <div class="wrapper">
       <div class="photo">
-        <img src="@/assets/portrait.png" alt="portrait" />
+        <img
+          @mouseenter="triggerGif"
+          @mouseleave="triggerGif"
+          class="gif-activate"
+          src="@/assets/ld_portrait.jpg"
+          alt="portrait"
+        />
       </div>
       <div class="about-side">
         <h3>{{ $t("page_titles.about_me") }}</h3>
         <p>{{ $t("about.p1") }}</p>
         <p>{{ $t("about.p2") }}</p>
 
-        <p>
-          {{ $t("about.p3") }}
-        </p>
-        <p>
-          {{ $t("about.p4") }}
-        </p>
-        <p>
-          {{ $t("about.p5") }}
-        </p>
+        <p>{{ $t("about.p3") }}</p>
+        <p>{{ $t("about.p4") }}</p>
+        <p>{{ $t("about.p5") }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      isGifActive: false,
+    };
+  },
+  methods: {
+    triggerGif(el) {
+      if (this.isGifActive) {
+        el.target.src = `${require("@/assets/ld_portrait.jpg")}`;
+        this.isGifActive = false;
+      } else {
+        el.target.src = `${require("@/assets/ld_portrait-hover.gif")}`;
+        this.isGifActive = true;
+      }
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 @import "@/style/_util";
 
 .wrapper {
-  padding: 0 2rem;
-  min-height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(250px, 1fr) minmax(300px, 1fr);
+  gap: 2rem;
   @media screen and (max-width: $small-break) {
-    flex-direction: column;
-    width: 100%;
-    padding: 0;
+    grid-template-columns: 1fr;
   }
 }
 
 .about-side {
-  max-width: 550px;
-  min-width: 300px;
-
   h3 {
     margin: 0;
   }
@@ -60,26 +70,22 @@ export default {};
 }
 
 .photo {
-  height: 100%;
+  display: grid;
+  place-items: center;
+  height: 500px;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-right: 2.5rem;
   img {
     height: auto;
+    max-height: 500px;
+    max-width: 500px;
     width: 100%;
-    min-width: 200px;
-    max-width: 400px;
   }
 
   @media screen and (max-width: $small-break) {
-    justify-content: center;
-    margin: 0 auto;
-    margin-bottom: 2rem;
+    height: 200px;
     img {
-      min-width: 100px;
-      max-width: 150px;
+      max-height: 200px;
+      max-width: 200px;
     }
   }
 }

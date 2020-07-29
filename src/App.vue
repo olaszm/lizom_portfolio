@@ -6,7 +6,7 @@
       <Footer />
       <transition name="fade">
         <Modal v-if="isModalOpen">
-          <h2>koszipuszi</h2>
+          <img src="@/assets/submit_thanks.gif" alt />
         </Modal>
       </transition>
     </div>

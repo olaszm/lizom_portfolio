@@ -5,11 +5,7 @@
       <router-link class="logo-routerlink" to="/">
         <div class="logo">
           <img src="@/assets/logo.svg" alt="Logo" />
-          <img
-            class="logo-text"
-            src="@/assets/logo-gif.gif"
-            alt="David Lizom logo"
-          />
+          <img class="logo-text" src="@/assets/logo-gif.gif" alt="David Lizom logo" />
         </div>
       </router-link>
 
@@ -48,7 +44,7 @@ export default {
       this.isMenuOpen = !this.isMenuOpen;
     },
     onResize() {
-      this.isMobile = window.innerWidth < 600;
+      this.isMobile = window.innerWidth < 780;
     },
   },
   mounted() {
@@ -67,7 +63,7 @@ export default {
     });
   },
   watch: {
-    isMenuOpen: function(newVal) {
+    isMenuOpen: function (newVal) {
       EventBus.$emit("MenuState", newVal);
     },
   },

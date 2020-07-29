@@ -1,7 +1,9 @@
 <template>
   <div class="wrap" @click="closeModal">
     <div class="modal">
-      <button class="close-btn">X</button>
+      <button class="close-btn">
+        <i class="fas fa-times"></i>
+      </button>
       <slot></slot>
     </div>
   </div>
@@ -12,9 +14,11 @@ import { EventBus } from "@/plugins/EventBus";
 export default {
   methods: {
     closeModal(e) {
+      console.log(e.target);
       if (
         e.target.className.includes("wrap") ||
-        e.target.className.includes("close-btn")
+        e.target.className.includes("close-btn") ||
+        e.target.className.includes("fa-times")
       ) {
         EventBus.$emit("closeModal", false);
       }
@@ -31,7 +35,7 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
+  height: 200%;
   width: 100%;
   background-color: rgba($color: #000000, $alpha: 0.5);
   display: flex;
@@ -43,17 +47,18 @@ export default {
 .modal {
   color: $white;
   box-shadow: 0 0 20px black;
-  background-color: black;
-  height: 150px;
-  width: 20%;
+  background-color: $primary;
+  min-height: 350px;
+  width: 30%;
   min-width: 290px;
-  margin-top: 25%;
+  margin-top: 10%;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   @media screen and (max-width: $small-break) {
-    margin-top: 100%;
+    margin-top: 30%;
+    width: 90%;
   }
 }
 
@@ -63,8 +68,8 @@ export default {
   right: 5%;
   border: none;
   background: none;
-  color: $white;
   font-size: 20px;
+  cursor: pointer;
 }
 
 .fade-enter-active,
