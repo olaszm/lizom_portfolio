@@ -44,6 +44,7 @@ export default {
   }
   a {
     color: black;
+    opacity: 0.6;
     text-decoration: none;
     text-transform: uppercase;
     font-weight: 300;
@@ -55,8 +56,8 @@ export default {
     min-width: 8ch;
     padding: 0 0.75em;
     &:hover {
-      border-bottom: 2px solid black;
       color: black;
+      opacity: 1;
     }
   }
   @media screen and (max-width: $small-break) {
@@ -64,6 +65,7 @@ export default {
   }
 }
 .router-link-exact-active {
+  opacity: 1 !important;
   border: 2px solid black !important;
   font-weight: 400 !important;
   color: black !important;
