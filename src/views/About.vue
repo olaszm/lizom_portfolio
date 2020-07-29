@@ -9,9 +9,11 @@
           type="video/mp4"
           width="400"
           height="300"
+          playsinline
           @mouseenter="triggerGif"
           @mouseleave="triggerGif"
-        ></video>
+        />
+        <!-- <img v-if="isMobile" src="@/assets/ld_portrait-hover.gif" alt="portrait-gif" /> -->
       </div>
       <div class="about-side">
         <h3>{{ $t("page_titles.about_me") }}</h3>
@@ -89,7 +91,8 @@ export default {
   place-items: center;
   height: 500px;
   width: 100%;
-  video {
+  video,
+  img {
     height: auto;
     max-height: 500px;
     max-width: 500px;
@@ -98,7 +101,8 @@ export default {
 
   @media screen and (max-width: $small-break) {
     height: 200px;
-    video {
+    video,
+    img {
       max-height: 200px;
       max-width: 200px;
     }

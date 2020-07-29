@@ -218,6 +218,9 @@ appearance: none;
 }
 
 .submit-btn {
+      -webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
   font-family: inherit;
   width: 40%;
   height: 50px;
