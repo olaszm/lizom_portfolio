@@ -1,12 +1,6 @@
 <template>
   <div class="cont">
-    <input
-      type="checkbox"
-      class="checkbox"
-      v-model="isChecked"
-      id="chk"
-      @click.stop="switchLocale"
-    />
+    <input type="checkbox" class="checkbox" v-model="isChecked" id="chk" @click.stop="switchLocale" />
     <label class="label" for="chk">
       <p class="switch-text">en</p>
       <p class="switch-text">hu</p>
@@ -66,16 +60,21 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 5px;
+  padding: 0 8px;
   position: relative;
   height: 26px;
   width: 52px;
   transform: scale(1.3);
   p {
     text-transform: uppercase;
-    font-size: 10px;
+    font-size: 9px;
     z-index: 1;
+    // padding: 8px;
+    // margin: 0.2em 0.9em;
     font-weight: 400;
+  }
+  &:hover {
+    box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.15);
   }
 }
 
@@ -83,15 +82,15 @@ export default {
   background-color: $primary;
   border-radius: 50%;
   position: absolute;
-  top: 3px;
-  left: 2px;
+  top: 50%;
+  left: 3.5px;
   height: 20px;
   width: 20px;
-  transform: translateX(0px);
+  transform: translate(0, -50%);
   transition: transform 0.2s linear;
 }
 
 .checkbox:checked + .label .ball {
-  transform: translateX(27px);
+  transform: translate(23.8px, -50%);
 }
 </style>

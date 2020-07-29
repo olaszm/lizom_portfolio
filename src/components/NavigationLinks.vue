@@ -3,9 +3,7 @@
     <div class="navigation-web">
       <router-link class="btn" to="/">{{ $t("menu.work") }}</router-link>
       <router-link class="btn" to="/about">{{ $t("menu.about") }}</router-link>
-      <router-link class="btn" to="/contact">
-        {{ $t("menu.contact") }}
-      </router-link>
+      <router-link class="btn" to="/contact">{{ $t("menu.contact") }}</router-link>
     </div>
     <SwitchLocale />
   </div>
@@ -57,6 +55,7 @@ export default {
     min-width: 8ch;
     padding: 0 0.75em;
     &:hover {
+      border-bottom: 2px solid black;
       color: black;
     }
   }

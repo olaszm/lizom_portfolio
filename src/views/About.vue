@@ -3,7 +3,7 @@
     <div class="wrapper">
       <div class="photo">
         <video muted @mouseenter="triggerGif" @mouseleave="triggerGif">
-          <source src="@/assets/ld_portrait-hover.mp4" />
+          <source src="@/assets/ld_portrait.mp4" />
         </video>
       </div>
       <div class="about-side">
