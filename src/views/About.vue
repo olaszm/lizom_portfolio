@@ -2,20 +2,9 @@
   <div class="main">
     <div class="wrapper">
       <div class="photo">
-        <img
-          @mouseenter="triggerGif"
-          v-if="!isGifActive"
-          class="gif-activate"
-          src="@/assets/ld_portrait.jpg"
-          alt="portrait"
-        />
-        <img
-          v-if="isGifActive"
-          @mouseleave="triggerGif"
-          class="gif-activate"
-          src="@/assets/ld_portrait-hover.gif"
-          alt="portrait"
-        />
+        <video muted @mouseenter="triggerGif" @mouseleave="triggerGif">
+          <source src="@/assets/ld_portrait-hover.mp4" />
+        </video>
       </div>
       <div class="about-side">
         <h3>{{ $t("page_titles.about_me") }}</h3>
@@ -34,16 +23,18 @@
 export default {
   data() {
     return {
-      isGifActive: false,
+      isGifActive: true,
     };
   },
   methods: {
-    triggerGif() {
+    triggerGif(el) {
       if (this.isGifActive) {
-        // el.target.src = `${require("@/assets/ld_portrait.jpg")}`;
+        el.target.play();
+        el.target.loop = true;
         this.isGifActive = false;
       } else {
-        // el.target.src = `${require("@/assets/ld_portrait-hover.gif")}`;
+        // el.target.pause();
+        el.target.loop = false;
         this.isGifActive = true;
       }
     },
@@ -81,7 +72,7 @@ export default {
   place-items: center;
   height: 500px;
   width: 100%;
-  img {
+  video {
     height: auto;
     max-height: 500px;
     max-width: 500px;
@@ -90,7 +81,7 @@ export default {
 
   @media screen and (max-width: $small-break) {
     height: 200px;
-    img {
+    video {
       max-height: 200px;
       max-width: 200px;
     }
