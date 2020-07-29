@@ -19,7 +19,7 @@ import { EventBus } from "@/plugins/EventBus";
 export default {
   data() {
     return {
-      isModalOpen: true,
+      isModalOpen: false,
     };
   },
   components: {
