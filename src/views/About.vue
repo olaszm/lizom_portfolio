@@ -9,6 +9,7 @@
           type="video/mp4"
           width="400"
           height="300"
+          controls="false"
           @mouseenter="triggerGif"
           @mouseleave="triggerGif"
         ></video>
