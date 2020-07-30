@@ -16,8 +16,6 @@
           @mouseenter="triggerGif"
           @mouseleave="triggerGif"
         ></video>
-        <!-- <img srcset="@/assets/ld_portrait.mp4" type="video/mp4" alt /> -->
-        <!-- <img class="portrait-img" src="@/assets/ld_portrait.jpg" alt /> -->
       </div>
       <div class="about-side">
         <h3>{{ $t("page_titles.about_me") }}</h3>
