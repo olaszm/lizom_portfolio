@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <h3>showreel</h3>
+    <h3>{{$t("page_titles.work")}}</h3>
     <div>
       <VideoPlayer />
     </div>

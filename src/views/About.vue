@@ -4,7 +4,6 @@
     <div class="wrapper">
       <div class="photo">
         <video
-          src="@/assets/ld_portrait.mp4"
           muted
           type="video/mp4"
           width="400"
@@ -12,7 +11,10 @@
           playsinline
           @mouseenter="triggerGif"
           @mouseleave="triggerGif"
-        />
+        >
+          <source src="@/assets/ld_portrait.mp4" type="video/mp4" />
+          <img src="ld_portrait.jpg" alt />
+        </video>
         <!-- <img v-if="isMobile" src="@/assets/ld_portrait-hover.gif" alt="portrait-gif" /> -->
       </div>
       <div class="about-side">

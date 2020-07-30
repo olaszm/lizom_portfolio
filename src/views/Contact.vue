@@ -18,7 +18,7 @@
         ></textarea>
 
          <p class="error-container" v-if="errors.length">
-    <b>Please correct the following error(s):</b>
+    <b>{{$t('form_errors.error_msg')}}</b>
     <ul>
       <li v-for="(error,index) in errors" :key="index">{{ error }}</li>
     </ul>
@@ -68,17 +68,22 @@ export default {
     sendForm() {
       this.errors = []
       if(!this.name){
-        this.errors.push('Name required.')
+          const msg = this.isEng ? 'Name required.' : 'Név kitöltése kötelező.'
+          this.errors.push(msg)
       }
 
       if(!this.email){
-        this.errors.push('Email required.')
+       const msg = this.isEng ? 'E-mail required.' : 'E-mail kitöltése kötelező.'
+          this.errors.push(msg)
       } else if(!this.validEmail(this.email)){
-        this.errors.push('Valid email required.')
+         const msg = this.isEng ? 'Valid E-mail required.' : 'Helytelen megadott E-mail cίm.'
+          this.errors.push(msg)
       }
 
        if(!this.message){
-        this.errors.push('Message required.')
+          const msg = this.isEng ? 'Message required.' : 'Üzenet kitöltése kötelező.'
+          this.errors.push(msg)
+      
       } 
 
 
