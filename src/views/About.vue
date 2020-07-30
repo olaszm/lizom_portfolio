@@ -4,18 +4,20 @@
     <div class="wrapper">
       <div class="photo">
         <video
+          poster="@/assets/ld_portrait.jpg"
+          class="video"
+          preload="true"
           muted
+          src="@/assets/ld_portrait.mp4"
           type="video/mp4"
           width="400"
           height="300"
           playsinline
           @mouseenter="triggerGif"
           @mouseleave="triggerGif"
-        >
-          <source src="@/assets/ld_portrait.mp4" type="video/mp4" />
-          <img src="ld_portrait.jpg" alt />
-        </video>
-        <!-- <img v-if="isMobile" src="@/assets/ld_portrait-hover.gif" alt="portrait-gif" /> -->
+        ></video>
+        <!-- <img srcset="@/assets/ld_portrait.mp4" type="video/mp4" alt /> -->
+        <!-- <img class="portrait-img" src="@/assets/ld_portrait.jpg" alt /> -->
       </div>
       <div class="about-side">
         <h3>{{ $t("page_titles.about_me") }}</h3>
