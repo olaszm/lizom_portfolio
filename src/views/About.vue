@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <h3 class="title">{{ $t("page_titles.about_me") }}</h3>
+    <h1 class="title">{{ $t("page_titles.about_me") }}</h1>
     <div class="wrapper">
       <div class="photo">
         <video
@@ -18,7 +18,7 @@
         ></video>
       </div>
       <div class="about-side">
-        <h3>{{ $t("page_titles.about_me") }}</h3>
+        <h1>{{ $t("page_titles.about_me") }}</h1>
         <p>{{ $t("about.p1") }}</p>
         <p>{{ $t("about.p2") }}</p>
 
@@ -32,6 +32,21 @@
 
 <script>
 export default {
+  metaInfo: {
+    title: "David Lizom Motion & Illustration",
+    titleTemplate: "%s | About",
+    meta: [
+      {
+        vmid: "description",
+        name: "description",
+        content: `Hello! My name is David.
+
+I am a hungarian illustrator and motion designer living in Pécs.
+
+While I like creating amusing works, it is also very important to me to bring other’s ideas to life in the best possible way.`,
+      },
+    ],
+  },
   data() {
     return {
       isGifActive: true,
@@ -44,7 +59,6 @@ export default {
         el.target.loop = true;
         this.isGifActive = false;
       } else {
-        // el.target.pause();
         el.target.loop = false;
         this.isGifActive = true;
       }
@@ -73,7 +87,7 @@ export default {
 }
 
 .about-side {
-  h3 {
+  h1 {
     margin: 0;
   }
   p {
@@ -82,7 +96,7 @@ export default {
   }
   @media screen and (max-width: $small-break) {
     min-width: 180px;
-    h3 {
+    h1 {
       display: none;
     }
   }

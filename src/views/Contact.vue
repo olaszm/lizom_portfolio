@@ -1,9 +1,9 @@
 <template>
   <div class="main">
-    <h3>{{ $t("page_titles.contact_me") }}</h3>
+    <h1>{{ $t("page_titles.contact_me") }}</h1>
     <div class="wrapper">
-      <form action @submit.prevent="sendForm" novalidate>
-        <label for="name">{{ $t("contact.name") }}</label>
+      <form action ref='form' @submit.prevent="sendForm" novalidate>
+        <label for="Name">{{ $t("contact.name") }}</label>
         <input type="text" v-model="name" required />
         <label for="Email">{{ $t("contact.email") }}</label>
         <input type="email" v-model="email" required />
@@ -16,7 +16,6 @@
           v-model="message"
           rows="10"
         ></textarea>
-
          <p class="error-container" v-if="errors.length">
     <b>{{$t('form_errors.error_msg')}}</b>
     <ul>
@@ -48,6 +47,17 @@
 <script>
 import { EventBus } from "@/plugins/EventBus";
 export default {
+    metaInfo: {
+    title: "David Lizom Motion & Illustration",
+    titleTemplate: "%s | Contact",
+    meta: [
+      {
+        vmid: "description",
+        name: "description",
+        content: `Feel free to contact me for uniqe and cool animations and illustrations`,
+      },
+    ],
+  },
   components: {},
   data() {
     return {
@@ -85,8 +95,6 @@ export default {
           this.errors.push(msg)
       
       } 
-
-
       if(!this.errors.length){
         const msg = {
           name: this.name,
@@ -109,15 +117,15 @@ export default {
       var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
     },
-    sendEmail(messageToSend){
-        fetch("/api", {
+    sendEmail(msg){
+        fetch("/email.php", {
           method: "post",
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            messageToSend
+            msg
           }),
         })
           .then(() => {
@@ -256,12 +264,10 @@ appearance: none;
   max-height: 600px;  
   img {
     width: 100%;
-    // height: auto;
     max-height: 600px;
     object-fit: contain;
   }
   @media screen and (max-width: $small-break) {
-    // margin: 1rem auto;
     display: none;
   }
 }
