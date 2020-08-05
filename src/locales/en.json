@@ -7,27 +7,31 @@
   "page_titles": {
     "about_me": "About me",
     "contact_me": "Contact me",
-    "work": "Showreel"
+    "work": "Works"
   },
   "about": {
     "p1": "Hello! My name is David.",
-    "p2": "I am a Hungarian illustrator and motion designer living in Pecs",
-    "p3": "I like to create playful images and animations with the use of both digital and traditional tools. I love bringing people's ideas to life and my goal is to concieve them as best as I possibly can. ",
-    "p4": "Aside from art, my two main interests are skateboarding and music and I would love to get an opportunity to work on anything related to them. ",
-    "p5": "I am available for freelance work so feel free to contact me with any idea. :) "
+    "p2": "I am a hungarian illustrator and motion designer living in Pécs.",
+    "p3": "While I like creating amusing works, it is also very important to me to bring other’s ideas to life in the best possible way.",
+    "p4": "My two main interests beside creating images and animation are the world of skateboarding and music. I would be more than willing to work on projects related to them, if I get an opportunity.",
+    "p5": "Feel free to contact me with ideas, I’m always interested in working on different projects  :)"
   },
   "contact": {
     "name": "Name",
-    "email": "Email",
+    "email": "E-mail",
     "subject": "Subject",
     "message": "Message",
     "submit": "Submit"
+  },
+  "form_errors": {
+    "error": "Please corret thte following error(s):",
+    "error_name": "Name required.",
+    "error_email": "E-mail required.",
+    "error_msg": "Message required."
   },
   "footer": {
     "phone": "Phone.: +36 30 380 0343",
     "copyrights": "© Copyright 2020. All rights reserved."
   },
-  "main": {
-    "message": "BOOYAKASHAA"
-  }
+  "main": {}
 }

@@ -1,4 +1,4 @@
-$small-break: 600px;
+$small-break: 780px;
 $medium-break: 992px;
 $primary: #ffca00;
 $white: #eeeeee;
@@ -7,7 +7,7 @@ $white: #eeeeee;
   text-align: left;
   width: 65%;
   margin: 5.5rem auto;
-  h3 {
+  h1 {
     text-align: left;
     margin-bottom: 1.5rem;
     text-transform: uppercase;
@@ -16,7 +16,7 @@ $white: #eeeeee;
   }
   @media screen and (max-width: $small-break) {
     width: 90%;
-    h3 {
+    h1 {
       text-align: center;
     }
   }

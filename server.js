@@ -27,7 +27,7 @@ app.listen(PORT, function() {
 
 app.post("/api", (req, res) => {
   console.log(req.body);
-  const { name, email, subject, message } = req.body.msg;
+  const { name, email, subject, message } = req.body.messageToSend;
 
   const msg = {
     to: "martin1olasz@gmail.com",

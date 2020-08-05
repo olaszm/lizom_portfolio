@@ -39,16 +39,14 @@ export default {
 @import "@/style/_util";
 
 .gallery {
-  margin: 6rem auto;
+  height: 100%;
   width: 100%;
+  margin: 0 auto;
   display: grid;
-  place-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 0.5rem;
-  grid-auto-flow: row dense;
-  @media screen and (max-width: $medium-break) {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  }
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  align-items: center;
+  justify-items: center;
+  gap: 2rem;
 }
 
 .image-container {
@@ -57,6 +55,9 @@ export default {
   position: relative;
   overflow: hidden;
   img {
+    width: 250px;
+    height: 250px;
+    border: 5px solid black;
     object-fit: cover;
     width: 100%;
     height: 100%;

@@ -2,14 +2,10 @@
   <div>
     <div id="app">
       <NavBar />
-      <transition
-        name="slither"
-        mode="out-in"
-        @beforeLeave="beforeLeave"
-        @enter="enter"
-        @afterEnter="afterEnter"
-      >
-        <router-view :key="$route.fullPath" />
+      <router-view class="main" :key="$route.fullPath" />
+      <Footer />
+      <transition name="fade">
+        <Modal v-if="isModalOpen"></Modal>
       </transition>
       <Footer />
     </div>
@@ -19,6 +15,7 @@
 <script>
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
+import Modal from "@/components/Modal";
 import { EventBus } from "@/plugins/EventBus";
 export default {
   data() {
@@ -30,6 +27,7 @@ export default {
   components: {
     NavBar,
     Footer,
+    Modal,
   },
   methods: {
     beforeLeave(element) {

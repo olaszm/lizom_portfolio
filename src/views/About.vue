@@ -1,53 +1,93 @@
 <template>
   <div class="main">
+    <h1 class="title">{{ $t("page_titles.about_me") }}</h1>
     <div class="wrapper">
       <div class="photo">
-        <img src="@/assets/portrait.png" alt />
+        <video
+          poster="@/assets/ld_portrait.jpg"
+          class="video"
+          preload="true"
+          muted
+          src="@/assets/ld_portrait.mp4"
+          type="video/mp4"
+          width="400"
+          height="300"
+          playsinline
+          @mouseenter="triggerGif"
+          @mouseleave="triggerGif"
+        ></video>
       </div>
       <div class="about-side">
-        <h3>{{ $t("page_titles.about_me") }}</h3>
+        <h1>{{ $t("page_titles.about_me") }}</h1>
         <p>{{ $t("about.p1") }}</p>
         <p>{{ $t("about.p2") }}</p>
 
-        <p>
-          {{ $t("about.p3") }}
-        </p>
-        <p>
-          {{ $t("about.p4") }}
-        </p>
-        <p>
-          {{ $t("about.p5") }}
-        </p>
+        <p>{{ $t("about.p3") }}</p>
+        <p>{{ $t("about.p4") }}</p>
+        <p>{{ $t("about.p5") }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  metaInfo: {
+    title: "David Lizom Motion & Illustration",
+    titleTemplate: "%s | About",
+    meta: [
+      {
+        vmid: "description",
+        name: "description",
+        content: `Hello! My name is David.
+
+I am a hungarian illustrator and motion designer living in Pécs.
+
+While I like creating amusing works, it is also very important to me to bring other’s ideas to life in the best possible way.`,
+      },
+    ],
+  },
+  data() {
+    return {
+      isGifActive: true,
+    };
+  },
+  methods: {
+    triggerGif(el) {
+      if (this.isGifActive) {
+        el.target.play();
+        el.target.loop = true;
+        this.isGifActive = false;
+      } else {
+        el.target.loop = false;
+        this.isGifActive = true;
+      }
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 @import "@/style/_util";
 
-.wrapper {
-  padding: 0 2rem;
-  min-height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.title {
+  display: none;
   @media screen and (max-width: $small-break) {
-    flex-direction: column;
-    width: 100%;
-    padding: 0;
+    display: block;
+  }
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: minmax(250px, 1fr) minmax(300px, 1fr);
+  gap: 2rem;
+  @media screen and (max-width: $small-break) {
+    grid-template-columns: 1fr;
   }
 }
 
 .about-side {
-  max-width: 550px;
-  min-width: 300px;
-
-  h3 {
+  h1 {
     margin: 0;
   }
   p {
@@ -56,30 +96,31 @@ export default {};
   }
   @media screen and (max-width: $small-break) {
     min-width: 180px;
+    h1 {
+      display: none;
+    }
   }
 }
 
 .photo {
-  height: 100%;
+  display: grid;
+  place-items: center;
+  height: 500px;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-right: 2.5rem;
+  video,
   img {
     height: auto;
+    max-height: 500px;
+    max-width: 500px;
     width: 100%;
-    min-width: 200px;
-    max-width: 400px;
   }
 
   @media screen and (max-width: $small-break) {
-    justify-content: center;
-    margin: 0 auto;
-    margin-bottom: 2rem;
+    height: 200px;
+    video,
     img {
-      min-width: 100px;
-      max-width: 150px;
+      max-height: 200px;
+      max-width: 200px;
     }
   }
 }
