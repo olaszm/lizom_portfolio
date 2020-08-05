@@ -1,11 +1,13 @@
 <template>
-  <div class="main">
-    <h1>{{ $t("page_titles.work") }}</h1>
-    <div>
-      <VideoPlayer />
+  <keep-alive>
+    <div class="main">
+      <h1>{{ $t("page_titles.work") }}</h1>
+      <div>
+        <VideoPlayer />
+      </div>
+      <ImageGallery />
     </div>
-    <ImageGallery />
-  </div>
+  </keep-alive>
 </template>
 
 <script>
