@@ -1,11 +1,15 @@
 <template>
-  <header>
+  <header id="header">
     <div class="drip"></div>
     <div class="wrapper">
       <router-link class="logo-routerlink" to="/">
         <div class="logo">
           <img src="@/assets/logo.svg" alt="Logo" />
-          <img class="logo-text" src="@/assets/logo-gif.gif" alt="David Lizom logo" />
+          <img
+            class="logo-text"
+            src="@/assets/logo-gif.gif"
+            alt="David Lizom logo"
+          />
         </div>
       </router-link>
 
@@ -25,6 +29,7 @@
 </template>
 
 <script>
+import { gsap } from "gsap";
 import NavigationLinks from "@/components/NavigationLinks";
 import HamburgerIcon from "@/components/HamburgerIcon";
 import { EventBus } from "@/plugins/EventBus";
@@ -61,9 +66,16 @@ export default {
         this.openMenu();
       }
     });
+    gsap.from("#header", {
+      y: "-100%",
+      opacity: 0,
+      ease: "bounce",
+      duration: 0.5,
+      delay: 0.5,
+    });
   },
   watch: {
-    isMenuOpen: function (newVal) {
+    isMenuOpen: function(newVal) {
       EventBus.$emit("MenuState", newVal);
     },
   },

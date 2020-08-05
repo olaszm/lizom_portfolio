@@ -2,8 +2,9 @@
   <div>
     <div id="app">
       <NavBar />
-      <router-view class="main" :key="$route.fullPath" />
-      <Footer />
+      <transition name="slither" mode="out-in">
+        <router-view :key="$route.fullPath" />
+      </transition>
       <transition name="fade">
         <Modal v-if="isModalOpen"></Modal>
       </transition>
@@ -88,7 +89,7 @@ body {
 
 .slither-enter-active,
 .slither-leave-active {
-  transition: all 400ms ease;
+  transition: all 350ms ease;
   overflow: hidden;
 }
 

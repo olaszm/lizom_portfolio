@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <h1 class="title">{{ $t("page_titles.about_me") }}</h1>
+    <h1 ref="title" class="title">{{ $t("page_titles.about_me") }}</h1>
     <div class="wrapper">
       <div class="photo">
         <video
@@ -18,7 +18,7 @@
         ></video>
       </div>
       <div class="about-side">
-        <h1>{{ $t("page_titles.about_me") }}</h1>
+        <h1 class="title-big">{{ $t("page_titles.about_me") }}</h1>
         <p>{{ $t("about.p1") }}</p>
         <p>{{ $t("about.p2") }}</p>
 
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import { gsap } from "gsap";
 export default {
   metaInfo: {
     title: "David Lizom Motion & Illustration",
@@ -63,6 +64,19 @@ While I like creating amusing works, it is also very important to me to bring ot
         this.isGifActive = true;
       }
     },
+  },
+  mounted() {
+    const tl = gsap.timeline();
+    tl.from(".about-side > *", {
+      opacity: 0,
+      x: 100,
+      // ease: "bounce",
+      stagger: {
+        amount: 0.5,
+      },
+      duration: 1,
+      delay: 0.3,
+    });
   },
 };
 </script>

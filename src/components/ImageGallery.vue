@@ -41,26 +41,23 @@ export default {
 .gallery {
   height: 100%;
   width: 100%;
-  margin: 0 auto;
+  margin: 10rem auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   align-items: center;
   justify-items: center;
-  gap: 2rem;
+  gap: 0.4rem;
 }
 
 .image-container {
-  width: auto;
-  height: 450px;
+  width: 100%;
+  height: 300px;
   position: relative;
   overflow: hidden;
   img {
-    width: 250px;
-    height: 250px;
-    border: 5px solid black;
-    object-fit: cover;
     width: 100%;
     height: 100%;
+    object-fit: cover;
   }
   &::before {
     content: "img-title";
