@@ -51,7 +51,6 @@ export default {
     this.onResize();
     window.addEventListener("resize", this.onResize, { passive: true });
     window.addEventListener("click", (e) => {
-      console.log(e.target);
       if (
         (e.target.className.includes("switch-text") && this.isMenuOpen) ||
         (e.target.className.includes("label") && this.isMenuOpen) ||

@@ -1,8 +1,10 @@
 <template>
-  <div class="wrapper">
+  <div>
     <div class="gallery">
-      <div class="image-container" v-for="(item, index) in photos" :key="index">
-        <img :src="item.fields.img.fields.file.url" alt="" />
+      <div class="gallery-inner" v-for="(item, index) in photos" :key="index">
+        <div class="image-container">
+          <img :src="item.fields.img.fields.file.url" alt />
+        </div>
         <!-- <p>{{ item.fields.title }}</p> -->
       </div>
     </div>
@@ -34,25 +36,47 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-@import "@/style/_variables";
+@import "@/style/_util";
 
 .gallery {
-  height: 100%;
-  width: 80%;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  margin: 6rem auto;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 0.5rem;
+  grid-auto-flow: row dense;
+  @media screen and (max-width: $medium-break) {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
 }
 
 .image-container {
+  width: auto;
+  height: 450px;
+  position: relative;
+  overflow: hidden;
   img {
-    margin: 2rem;
-    max-width: 250px;
-    max-height: 250px;
-    border: 5px solid black;
     object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  &::before {
+    content: "img-title";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    display: grid;
+    place-items: center;
+    transform: translateY(-100%);
+    background-color: rgba($color: black, $alpha: 0.6);
+    transition: all 300ms ease;
+  }
+  &:hover::before {
+    transform: translate(0);
   }
 }
 </style>
