@@ -2,11 +2,15 @@
   <div>
     <div id="app">
       <NavBar />
-      <router-view class="main" :key="$route.fullPath" />
-      <Footer />
+      <keep-alive include="Home">
+        <transition name="slither" mode="out-in">
+          <router-view :key="$route.fullPath" />
+        </transition>
+      </keep-alive>
       <transition name="fade">
         <Modal v-if="isModalOpen"></Modal>
       </transition>
+      <Footer />
     </div>
   </div>
 </template>
@@ -20,12 +24,30 @@ export default {
   data() {
     return {
       isModalOpen: false,
+      prevHeight: 0,
     };
   },
   components: {
     NavBar,
     Footer,
     Modal,
+  },
+  methods: {
+    beforeLeave(element) {
+      this.prevHeight = getComputedStyle(element).height;
+    },
+    enter(element) {
+      const { height } = getComputedStyle(element);
+
+      element.style.height = this.prevHeight;
+
+      setTimeout(() => {
+        element.style.height = height;
+      });
+    },
+    afterEnter(element) {
+      element.style.height = "auto";
+    },
   },
   created() {
     EventBus.$on("closeModal", (state) => {
@@ -65,5 +87,23 @@ body {
   @media screen and (max-width: $small-break) {
     font-size: 16px;
   }
+}
+
+.slither-enter-active,
+.slither-leave-active {
+  transition: all 350ms ease;
+  overflow: hidden;
+}
+
+.slither-enter,
+.slither-leave-to {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.slither-enter-to,
+.slither-leave {
+  transform: translateX(0);
+  opacity: 1;
 }
 </style>
