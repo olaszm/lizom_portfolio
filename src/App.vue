@@ -2,9 +2,11 @@
   <div>
     <div id="app">
       <NavBar />
-      <transition name="slither" mode="out-in">
-        <router-view :key="$route.fullPath" />
-      </transition>
+      <keep-alive include="Home">
+        <transition name="slither" mode="out-in">
+          <router-view :key="$route.fullPath" />
+        </transition>
+      </keep-alive>
       <transition name="fade">
         <Modal v-if="isModalOpen"></Modal>
       </transition>

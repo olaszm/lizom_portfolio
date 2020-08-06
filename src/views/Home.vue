@@ -1,19 +1,17 @@
 <template>
-  <keep-alive>
-    <div class="main">
-      <h1>{{ $t("page_titles.work") }}</h1>
-      <div>
-        <VideoPlayer />
-      </div>
-      <ImageGallery />
+  <div class="main">
+    <h1>{{ $t("page_titles.work") }}</h1>
+    <div>
+      <VideoPlayer />
     </div>
-  </keep-alive>
+    <!-- <ImageGallery /> -->
+  </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import VideoPlayer from "@/components/VideoPlayer";
-import ImageGallery from "@/components/ImageGallery";
+// import ImageGallery from "@/components/ImageGallery";
 export default {
   metaInfo: {
     title: "David Lizom Motion & Illustration",
@@ -57,7 +55,7 @@ export default {
     ],
   },
   name: "Home",
-  components: { VideoPlayer, ImageGallery },
+  components: { VideoPlayer },
 };
 </script>
 
