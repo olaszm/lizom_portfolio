@@ -13,19 +13,19 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "connect-history-api-fallback": "^1.6.0",
-    "contentful": "^7.14.5",
-    "core-js": "^3.6.5",
+    "contentful": "^7.15.2",
+    "core-js": "^3.17.2",
     "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
+    "dotenv": "^8.6.0",
     "express": "^4.17.1",
-    "gsap": "^3.4.2",
-    "mini-css-extract-plugin": "^0.8.0",
-    "nodemon": "^2.0.4",
+    "gsap": "^3.7.1",
+    "mini-css-extract-plugin": "^0.8.2",
+    "nodemon": "^2.0.12",
     "serve-static": "^1.14.1",
-    "vue": "^2.6.11",
-    "vue-i18n": "^8.17.3",
+    "vue": "^2.6.14",
+    "vue-i18n": "^8.25.0",
     "vue-meta": "^2.4.0",
-    "vue-router": "^3.2.0",
+    "vue-router": "^3.5.2",
     "vue-router-sitemap": "0.0.4"
   },
   "devDependencies": {
@@ -39,6 +39,6 @@
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.2",
     "vue-cli-plugin-i18n": "~1.0.1",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.14"
   }
 }
