@@ -45,9 +45,10 @@
 </template>
 
 <script>
-import { EventBus } from "@/plugins/EventBus";
+import  EventBus  from "@/plugins/EventBus";
 export default {
-    metaInfo: {
+  name: "MyContact",
+  metaInfo: {
     title: "David Lizom Motion & Illustration",
     titleTemplate: "%s | Contact",
     meta: [
@@ -61,8 +62,8 @@ export default {
   components: {},
   data() {
     return {
-      isMobile : false,
-      isFormSubmited : false ,
+      isMobile: false,
+      isFormSubmited: false,
       errors: [],
       name: "",
       email: "",
@@ -72,30 +73,35 @@ export default {
   },
 
   methods: {
-     onResize() {
+    onResize() {
       this.isMobile = window.innerWidth < 780;
     },
     sendForm() {
-      this.errors = []
-      if(!this.name){
-          const msg = this.isEng ? 'Name required.' : 'Név kitöltése kötelező.'
-          this.errors.push(msg)
+      this.errors = [];
+      if (!this.name) {
+        const msg = this.isEng ? "Name required." : "Név kitöltése kötelező.";
+        this.errors.push(msg);
       }
 
-      if(!this.email){
-       const msg = this.isEng ? 'E-mail required.' : 'E-mail kitöltése kötelező.'
-          this.errors.push(msg)
-      } else if(!this.validEmail(this.email)){
-         const msg = this.isEng ? 'Valid E-mail required.' : 'Helytelen megadott E-mail cίm.'
-          this.errors.push(msg)
+      if (!this.email) {
+        const msg = this.isEng
+          ? "E-mail required."
+          : "E-mail kitöltése kötelező.";
+        this.errors.push(msg);
+      } else if (!this.validEmail(this.email)) {
+        const msg = this.isEng
+          ? "Valid E-mail required."
+          : "Helytelen megadott E-mail cίm.";
+        this.errors.push(msg);
       }
 
-       if(!this.message){
-          const msg = this.isEng ? 'Message required.' : 'Üzenet kitöltése kötelező.'
-          this.errors.push(msg)
-      
-      } 
-      if(!this.errors.length){
+      if (!this.message) {
+        const msg = this.isEng
+          ? "Message required."
+          : "Üzenet kitöltése kötelező.";
+        this.errors.push(msg);
+      }
+      if (!this.errors.length) {
         const msg = {
           name: this.name,
           email: this.email,
@@ -104,8 +110,7 @@ export default {
         };
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
-        this.sendEmail(msg)
-      
+        this.sendEmail(msg);
 
         this.name = "";
         this.email = "";
@@ -113,46 +118,48 @@ export default {
         this.subject = "";
       }
     },
-     validEmail: function (email) {
-      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    validEmail: function (email) {
+      var re =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
     },
-    sendEmail(msg){
-        fetch("/email.php", {
-          method: "post",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            msg
-          }),
-        })
-          .then(() => {
-            if(this.isMobile){
-              EventBus.$emit("closeModal", (state) => {
+    sendEmail(msg) {
+      fetch("/email.php", {
+        method: "post",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          msg,
+        }),
+      })
+        .then(() => {
+          if (this.isMobile) {
+            EventBus.$emit("closeModal", (state) => {
               this.isModalOpen = state;
-              });
-            }
-            this.isFormSubmited = true
-          })
-          .catch(function(error) {
-            console.log(error);
-          });
-    }
+            });
+          }
+          this.isFormSubmited = true;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
   },
-    computed: {
+  computed: {
     isEng() {
       return this.$i18n.locale == "en" ? true : false;
-    },},
+    },
+  },
   mounted() {
-      this.onResize();
+    this.onResize();
     window.addEventListener("resize", this.onResize, { passive: true });
     EventBus.$on("closeModal", (state) => {
       this.isModalOpen = state;
     });
   },
-   beforeDestroy() {
+  beforeUnmount() {
     if (typeof window !== "undefined") {
       window.removeEventListener("resize", this.onResize, { passive: true });
     }
@@ -170,8 +177,8 @@ export default {
   gap: 6rem;
   align-items: center;
   @media screen and (max-width: $small-break) {
-   grid-template-columns: 1fr;
-   place-items: center;
+    grid-template-columns: 1fr;
+    place-items: center;
   }
 }
 
@@ -192,8 +199,8 @@ form {
   input[type="text"],
   input[type="email"] {
     -webkit-appearance: none;
--moz-appearance: none;
-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     font-family: "Rubik", sans-serif;
     outline: none;
     height: 40px;
@@ -208,8 +215,8 @@ appearance: none;
   }
   textarea {
     -webkit-appearance: none;
--moz-appearance: none;
-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     font-family: "Rubik", sans-serif;
     box-sizing: border-box;
     outline: none;
@@ -231,9 +238,9 @@ appearance: none;
 }
 
 .submit-btn {
-      -webkit-appearance: none;
--moz-appearance: none;
-appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   font-family: inherit;
   width: 40%;
   height: 50px;
@@ -254,14 +261,14 @@ appearance: none;
 
 .error-container {
   margin: 1rem 0;
-  color : rgb(228, 101, 101);
+  color: rgb(228, 101, 101);
   li {
     margin: 0 2rem;
   }
 }
 
 .gif-container {
-  max-height: 600px;  
+  max-height: 600px;
   img {
     width: 100%;
     max-height: 600px;

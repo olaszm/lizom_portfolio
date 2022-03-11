@@ -41,7 +41,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: 'FooterElement'
+};
 </script>
 
 <style lang="scss" scoped>

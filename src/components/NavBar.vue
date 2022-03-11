@@ -32,7 +32,7 @@
 import { gsap } from "gsap";
 import NavigationLinks from "@/components/NavigationLinks";
 import HamburgerIcon from "@/components/HamburgerIcon";
-import { EventBus } from "@/plugins/EventBus";
+import  EventBus  from "@/plugins/EventBus";
 export default {
   components: {
     NavigationLinks,
@@ -79,7 +79,7 @@ export default {
       EventBus.$emit("MenuState", newVal);
     },
   },
-  beforeDestroy() {
+  beforeUnmount() {
     if (typeof window !== "undefined") {
       window.removeEventListener("resize", this.onResize, { passive: true });
     }

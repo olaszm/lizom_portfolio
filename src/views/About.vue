@@ -33,6 +33,7 @@
 <script>
 import { gsap } from "gsap";
 export default {
+  name: 'MyAbout',
   metaInfo: {
     title: "David Lizom Motion & Illustration",
     titleTemplate: "%s | About",

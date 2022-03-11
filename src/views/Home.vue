@@ -13,6 +13,7 @@
 import VideoPlayer from "@/components/VideoPlayer";
 // import ImageGallery from "@/components/ImageGallery";
 export default {
+  name:'MyHome', 
   metaInfo: {
     title: "David Lizom Motion & Illustration",
     titleTemplate: "%s | Works",
