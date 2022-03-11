@@ -8,18 +8,20 @@
         </transition>
       </keep-alive>
       <transition name="fade">
-        <Modal v-if="isModalOpen"></Modal>
+        <MyModal v-if="isModalOpen"></MyModal>
       </transition>
-      <Footer />
+      <FooterElement />
     </div>
   </div>
 </template>
 
 <script>
 import NavBar from "@/components/NavBar";
-import Footer from "@/components/Footer";
-import Modal from "@/components/Modal";
-import { EventBus } from "@/plugins/EventBus";
+import FooterElement from "@/components/FooterElement";
+import MyModal from "@/components/MyModal";
+import EventBus from "@/plugins/EventBus";
+
+import { useI18n } from "vue-i18n";
 export default {
   data() {
     return {
@@ -29,8 +31,8 @@ export default {
   },
   components: {
     NavBar,
-    Footer,
-    Modal,
+    FooterElement,
+    MyModal,
   },
   methods: {
     beforeLeave(element) {
@@ -50,6 +52,9 @@ export default {
     },
   },
   created() {
+    const { t } = useI18n(); // use as global scope
+
+    console.log(t)
     EventBus.$on("closeModal", (state) => {
       this.isModalOpen = state;
     });
@@ -60,6 +65,7 @@ export default {
       this.$i18n.locale = locale;
     }
   },
+
 };
 </script>
 

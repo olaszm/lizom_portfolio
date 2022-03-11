@@ -1,27 +1,18 @@
-import Vue from "vue";
-import VueI18n from "vue-i18n";
+import { createI18n } from 'vue-i18n'
 
-Vue.use(VueI18n);
+import en from './locales/en.json'
+import hun from './locales/hun.json'
 
-function loadLocaleMessages() {
-  const locales = require.context(
-    "./locales",
-    true,
-    /[A-Za-z0-9-_,\s]+\.json$/i
-  );
-  const messages = {};
-  locales.keys().forEach((key) => {
-    const matched = key.match(/([A-Za-z0-9-_]+)\./i);
-    if (matched && matched.length > 1) {
-      const locale = matched[1];
-      messages[locale] = locales(key);
-    }
-  });
-  return messages;
+const messages = {
+  en,
+  hun
 }
 
-export default new VueI18n({
+const i18n = createI18n({
   locale: process.env.VUE_APP_I18N_LOCALE || "en",
+  allowCompositoin: true, // you need to specify that!
   fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || "en",
-  messages: loadLocaleMessages(),
+  messages: messages,
 });
+
+export default i18n
