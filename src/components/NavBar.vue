@@ -1,27 +1,42 @@
 <template>
   <header id="header">
-    <div class="drip"></div>
+    <div class="drip" />
     <div class="wrapper">
-      <router-link class="logo-routerlink" to="/">
+      <router-link
+        class="logo-routerlink"
+        to="/"
+      >
         <div class="logo">
-          <img src="@/assets/logo.svg" alt="Logo" />
+          <img
+            src="@/assets/logo.svg"
+            alt="Logo"
+          >
           <img
             class="logo-text"
             src="@/assets/logo-gif.gif"
             alt="David Lizom logo"
-          />
+          >
         </div>
       </router-link>
 
       <NavigationLinks v-if="!isMobile" />
 
-      <div class="navigation-mobile" @click.stop="openMenu">
+      <div
+        class="navigation-mobile"
+        @click.stop="openMenu"
+      >
         <HamburgerIcon />
       </div>
     </div>
 
-    <transition name="fade" mode="out-in">
-      <div class="test" v-show="isMenuOpen">
+    <transition
+      name="fade"
+      mode="out-in"
+    >
+      <div
+        v-show="isMenuOpen"
+        class="test"
+      >
         <NavigationLinks />
       </div>
     </transition>
@@ -44,12 +59,9 @@ export default {
       isMenuOpen: false,
     };
   },
-  methods: {
-    openMenu() {
-      this.isMenuOpen = !this.isMenuOpen;
-    },
-    onResize() {
-      this.isMobile = window.innerWidth < 780;
+  watch: {
+    isMenuOpen: function(newVal) {
+      EventBus.$emit("MenuState", newVal);
     },
   },
   mounted() {
@@ -74,15 +86,18 @@ export default {
       delay: 0.5,
     });
   },
-  watch: {
-    isMenuOpen: function(newVal) {
-      EventBus.$emit("MenuState", newVal);
-    },
-  },
   beforeUnmount() {
     if (typeof window !== "undefined") {
       window.removeEventListener("resize", this.onResize, { passive: true });
     }
+  },
+  methods: {
+    openMenu() {
+      this.isMenuOpen = !this.isMenuOpen;
+    },
+    onResize() {
+      this.isMobile = window.innerWidth < 780;
+    },
   },
 };
 </script>

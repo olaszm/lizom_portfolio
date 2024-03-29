@@ -1,27 +1,25 @@
 <template>
   <div class="cont">
-    <input type="checkbox" class="checkbox" v-model="isChecked" id="chk" @click.stop="switchLocale" />
-    <label class="label" for="chk">
+    <input
+      id="chk"
+      v-model="isChecked"
+      type="checkbox"
+      class="checkbox"
+      @click.stop="switchLocale"
+    >
+    <label
+      class="label"
+      for="chk"
+    >
       <p class="switch-text">en</p>
       <p class="switch-text">hu</p>
-      <div class="ball"></div>
+      <div class="ball" />
     </label>
   </div>
 </template>
 
 <script>
 export default {
-  methods: {
-    switchLocale() {
-      if (this.isChecked) {
-        this.$i18n.locale = "en";
-        localStorage.setItem("locale", "en");
-      } else {
-        this.$i18n.locale = "hun";
-        localStorage.setItem("locale", "hun");
-      }
-    },
-  },
   data() {
     return {
       locales: ["en", "hun"],
@@ -34,6 +32,17 @@ export default {
     locale == "en" || !locale
       ? (this.isChecked = false)
       : (this.isChecked = true);
+  },
+  methods: {
+    switchLocale() {
+      if (this.isChecked) {
+        this.$i18n.locale = "en";
+        localStorage.setItem("locale", "en");
+      } else {
+        this.$i18n.locale = "hun";
+        localStorage.setItem("locale", "hun");
+      }
+    },
   },
 };
 </script>

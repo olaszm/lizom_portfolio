@@ -1,8 +1,12 @@
 <template>
-  <div class="container" @click="animateHamburger" ref="cont">
-    <div class="bar1"></div>
-    <div class="bar2"></div>
-    <div class="bar3"></div>
+  <div
+    ref="cont"
+    class="container"
+    @click="animateHamburger"
+  >
+    <div class="bar1" />
+    <div class="bar2" />
+    <div class="bar3" />
   </div>
 </template>
 
@@ -15,6 +19,12 @@ export default {
       isMenuOpen: false,
     };
   },
+  created() {
+    EventBus.$on("MenuState", (state) => {
+      this.isMenuOpen = state;
+      this.animateHamburger();
+    });
+  },
   methods: {
     animateHamburger() {
       if (this.isMenuOpen) {
@@ -23,12 +33,6 @@ export default {
         this.$refs.cont.classList.remove("change");
       }
     },
-  },
-  created() {
-    EventBus.$on("MenuState", (state) => {
-      this.isMenuOpen = state;
-      this.animateHamburger();
-    });
   },
 };
 </script>

@@ -9,7 +9,7 @@
           target="_blank"
         >
           <div class="social-btn">
-            <i class="fab fa-instagram"></i>
+            <i class="fab fa-instagram" />
           </div>
         </a>
         <a
@@ -19,20 +19,30 @@
           rel="noopener"
         >
           <div class="social-btn">
-            <i class="fab fa-linkedin"></i>
+            <i class="fab fa-linkedin" />
           </div>
         </a>
-        <a href="https://www.behance.net/davidlizom" title="Behance" rel="noopener" target="_blank">
+        <a
+          href="https://www.behance.net/davidlizom"
+          title="Behance"
+          rel="noopener"
+          target="_blank"
+        >
           <div class="social-btn">
-            <i class="fab fa-behance"></i>
+            <i class="fab fa-behance" />
           </div>
         </a>
       </div>
-      <p class="phone-number">{{ $t("footer.phone") }}</p>
+      <p class="phone-number">
+        {{ $t("footer.phone") }}
+      </p>
     </div>
 
     <div class="footer-logo">
-      <img src="@/assets/ld_logotype-footer.gif" alt />
+      <img
+        src="@/assets/ld_logotype-footer.gif"
+        alt
+      >
       <div class="copy">
         <p>{{ $t("footer.copyrights") }}</p>
       </div>

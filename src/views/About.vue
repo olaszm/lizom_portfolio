@@ -1,6 +1,11 @@
 <template>
   <div class="main">
-    <h1 ref="title" class="title">{{ $t("page_titles.about_me") }}</h1>
+    <h1
+      ref="title"
+      class="title"
+    >
+      {{ $t("page_titles.about_me") }}
+    </h1>
     <div class="wrapper">
       <div class="photo">
         <video
@@ -15,10 +20,12 @@
           playsinline
           @mouseenter="triggerGif"
           @mouseleave="triggerGif"
-        ></video>
+        />
       </div>
       <div class="about-side">
-        <h1 class="title-big">{{ $t("page_titles.about_me") }}</h1>
+        <h1 class="title-big">
+          {{ $t("page_titles.about_me") }}
+        </h1>
         <p>{{ $t("about.p1") }}</p>
         <p>{{ $t("about.p2") }}</p>
 
@@ -54,18 +61,6 @@ While I like creating amusing works, it is also very important to me to bring ot
       isGifActive: true,
     };
   },
-  methods: {
-    triggerGif(el) {
-      if (this.isGifActive) {
-        el.target.play();
-        el.target.loop = true;
-        this.isGifActive = false;
-      } else {
-        el.target.loop = false;
-        this.isGifActive = true;
-      }
-    },
-  },
   mounted() {
     const tl = gsap.timeline();
     tl.from(".about-side > *", {
@@ -78,6 +73,18 @@ While I like creating amusing works, it is also very important to me to bring ot
       duration: 1,
       delay: 0.3,
     });
+  },
+  methods: {
+    triggerGif(el) {
+      if (this.isGifActive) {
+        el.target.play();
+        el.target.loop = true;
+        this.isGifActive = false;
+      } else {
+        el.target.loop = false;
+        this.isGifActive = true;
+      }
+    },
   },
 };
 </script>

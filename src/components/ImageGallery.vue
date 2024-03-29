@@ -1,9 +1,16 @@
 <template>
   <div>
     <div class="gallery">
-      <div class="gallery-inner" v-for="(item, index) in photos" :key="index">
+      <div
+        v-for="(item, index) in photos"
+        :key="index"
+        class="gallery-inner"
+      >
         <div class="image-container">
-          <img :src="item.fields.img.fields.file.url" alt />
+          <img
+            :src="item.fields.img.fields.file.url"
+            alt
+          >
         </div>
         <!-- <p>{{ item.fields.title }}</p> -->
       </div>
@@ -19,6 +26,10 @@ export default {
       photos: [],
     };
   },
+
+  mounted() {
+    this.getPost();
+  },
   methods: {
     async getPost() {
       const resp = await client.getEntries({
@@ -26,10 +37,6 @@ export default {
       });
       this.photos = resp.items;
     },
-  },
-
-  mounted() {
-    this.getPost();
   },
 };
 </script>

@@ -7,7 +7,7 @@
       src="https://player.vimeo.com/video/441807983"
       allowfullscreen
       frameborder="0"
-    ></iframe>
+    />
   </div>
 </template>
 

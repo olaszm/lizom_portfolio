@@ -1,13 +1,31 @@
 <template>
   <div class="cont">
     <div class="navigation-web">
-      <router-link class="btn" exact to="/">{{ $t("menu.work") }}</router-link>
-      <router-link class="btn" exact to="/about">{{
-        $t("menu.about")
-      }}</router-link>
-      <router-link class="btn" exact to="/contact">{{
-        $t("menu.contact")
-      }}</router-link>
+      <router-link
+        class="btn"
+        exact
+        to="/"
+      >
+        {{ $t("menu.work") }}
+      </router-link>
+      <router-link
+        class="btn"
+        exact
+        to="/about"
+      >
+        {{
+          $t("menu.about")
+        }}
+      </router-link>
+      <router-link
+        class="btn"
+        exact
+        to="/contact"
+      >
+        {{
+          $t("menu.contact")
+        }}
+      </router-link>
     </div>
     <SwitchLocale />
   </div>
