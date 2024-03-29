@@ -1,11 +1,22 @@
 <template>
-  <div class="wrap" @click="closeModal">
+  <div
+    class="wrap"
+    @click="closeModal"
+  >
     <div class="modal">
       <button class="close-btn">
-        <i class="fas fa-times"></i>
+        <i class="fas fa-times" />
       </button>
-      <img v-if="isEng" src="@/assets/submit_thanks.gif" alt />
-      <img v-else src="@/assets/submit_thanks-hun.gif" alt />
+      <img
+        v-if="isEng"
+        src="@/assets/submit_thanks.gif"
+        alt
+      >
+      <img
+        v-else
+        src="@/assets/submit_thanks-hun.gif"
+        alt
+      >
     </div>
   </div>
 </template>

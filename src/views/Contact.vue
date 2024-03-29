@@ -2,43 +2,72 @@
   <div class="main">
     <h1>{{ $t("page_titles.contact_me") }}</h1>
     <div class="wrapper">
-      <form action ref='form' @submit.prevent="sendForm" novalidate>
+      <form
+        ref="form"
+        action
+        novalidate
+        @submit.prevent="sendForm"
+      >
         <label for="Name">{{ $t("contact.name") }}</label>
-        <input type="text" v-model="name" required />
+        <input
+          v-model="name"
+          type="text"
+          required
+        >
         <label for="Email">{{ $t("contact.email") }}</label>
-        <input type="email" v-model="email" required />
+        <input
+          v-model="email"
+          type="email"
+          required
+        >
         <label for="Subject">{{ $t("contact.subject") }}</label>
-        <input type="text" v-model="subject" />
+        <input
+          v-model="subject"
+          type="text"
+        >
         <label for="Message">{{ $t("contact.message") }}</label>
         <textarea
+          v-model="message"
           required
           name="message"
-          v-model="message"
           rows="10"
-        ></textarea>
-         <p class="error-container" v-if="errors.length">
-    <b>{{$t('form_errors.error_msg')}}</b>
-    <ul>
-      <li v-for="(error,index) in errors" :key="index">{{ error }}</li>
-    </ul>
-  </p>
+        />
+        <p
+          v-if="errors.length"
+          class="error-container"
+        >
+          <b>{{ $t('form_errors.error_msg') }}</b>
+          <ul>
+            <li
+              v-for="(error,index) in errors"
+              :key="index"
+            >
+              {{ error }}
+            </li>
+          </ul>
+        </p>
         <div class="submit-btn-container">
           <input
             type="submit"
             :value="$t('contact.submit')"
             class="submit-btn"
-          />
+          >
         </div>
       </form>
-      <div v-if="isFormSubmited" class="gif-container">
-        <img v-if="isEng"
+      <div
+        v-if="isFormSubmited"
+        class="gif-container"
+      >
+        <img
+          v-if="isEng"
           src="@/assets/submit_thanks.gif"
           alt
-        />
-        <img v-else
+        >
+        <img
+          v-else
           src="@/assets/submit_thanks-hun.gif"
           alt
-        />
+        >
       </div>
     </div>
   </div>
@@ -70,6 +99,23 @@ export default {
       subject: "",
       message: "",
     };
+  },
+  computed: {
+    isEng() {
+      return this.$i18n.locale == "en" ? true : false;
+    },
+  },
+  mounted() {
+    this.onResize();
+    window.addEventListener("resize", this.onResize, { passive: true });
+    EventBus.$on("closeModal", (state) => {
+      this.isModalOpen = state;
+    });
+  },
+  beforeUnmount() {
+    if (typeof window !== "undefined") {
+      window.removeEventListener("resize", this.onResize, { passive: true });
+    }
   },
 
   methods: {
@@ -146,23 +192,6 @@ export default {
           console.log(error);
         });
     },
-  },
-  computed: {
-    isEng() {
-      return this.$i18n.locale == "en" ? true : false;
-    },
-  },
-  mounted() {
-    this.onResize();
-    window.addEventListener("resize", this.onResize, { passive: true });
-    EventBus.$on("closeModal", (state) => {
-      this.isModalOpen = state;
-    });
-  },
-  beforeUnmount() {
-    if (typeof window !== "undefined") {
-      window.removeEventListener("resize", this.onResize, { passive: true });
-    }
   },
 };
 </script>

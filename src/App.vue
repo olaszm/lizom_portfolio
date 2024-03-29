@@ -3,12 +3,15 @@
     <div id="app">
       <NavBar />
       <keep-alive include="Home">
-        <transition name="slither" mode="out-in">
+        <transition
+          name="slither"
+          mode="out-in"
+        >
           <router-view :key="$route.fullPath" />
         </transition>
       </keep-alive>
       <transition name="fade">
-        <MyModal v-if="isModalOpen"></MyModal>
+        <MyModal v-if="isModalOpen" />
       </transition>
       <FooterElement />
     </div>
@@ -23,16 +26,30 @@ import EventBus from "@/plugins/EventBus";
 
 import { useI18n } from "vue-i18n";
 export default {
+  components: {
+    NavBar,
+    FooterElement,
+    MyModal,
+  },
   data() {
     return {
       isModalOpen: false,
       prevHeight: 0,
     };
   },
-  components: {
-    NavBar,
-    FooterElement,
-    MyModal,
+  created() {
+    const { t } = useI18n(); // use as global scope
+
+    console.log(t)
+    EventBus.$on("closeModal", (state) => {
+      this.isModalOpen = state;
+    });
+
+    const locale = localStorage.getItem("locale");
+
+    if (locale) {
+      this.$i18n.locale = locale;
+    }
   },
   methods: {
     beforeLeave(element) {
@@ -50,20 +67,6 @@ export default {
     afterEnter(element) {
       element.style.height = "auto";
     },
-  },
-  created() {
-    const { t } = useI18n(); // use as global scope
-
-    console.log(t)
-    EventBus.$on("closeModal", (state) => {
-      this.isModalOpen = state;
-    });
-
-    const locale = localStorage.getItem("locale");
-
-    if (locale) {
-      this.$i18n.locale = locale;
-    }
   },
 
 };
